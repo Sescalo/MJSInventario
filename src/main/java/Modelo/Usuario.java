@@ -11,13 +11,16 @@ public class Usuario {
     private int telefono;
     private String contrasena;
 
-    public Usuario(int idUsuario, String nombreUsuario, String nombre, String correo, int cedula, int telefono, String contrasena) {
+    public Usuario(int idUsuario, String nombreUsuario, String nombre, String correo, int telefono, String contrasena) {
         this.idUsuario = idUsuario;
         this.nombreUsuario = nombreUsuario;
         this.nombre = nombre;
         this.correo = correo;
         this.telefono = telefono;
         this.contrasena = contrasena;
+    }
+    
+    public Usuario(){
     }
 
     public String getNombreUsuario() {

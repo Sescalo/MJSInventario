@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  <title>MJSInventario</title>
+	  <meta charset="utf-8"/>
+	  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+	  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script> -->
+	  <!-- <script src="/home/oskr/Desktop/bootstrap-3.3.7-dist/css/bootstrap.css"></script> -->
+	</head>
+
+	<body class="" style="">
+
+		<nav class="navbar navbar-default">
+		  <div class="container">
+
+		    <div class="navbar-header">
+		      <a class="navbar-brand" href="#">MJSInventario</a>
+		    </div>
+
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      <ul class="nav navbar-nav">
+
+	      		<!-- <li class="active"> -->
+		        <li><a href="#">Nuevo Objeto<span class="sr-only">(current)</span></a></li>
+
+		        <li class="active"><a href="#">Usuarios</a></li>
+		        <li><a href="#">Historial</a></li>
+		        <li><a href="#">Configuración</a></li>
+
+		      </ul>
+
+		      
+
+		      <ul class="nav navbar-nav navbar-right">
+		        <li><a href="#">Salir</a></li>
+		      </ul>
+
+		    </div>
+		  </div>
+		</nav>
+
+		<div class="container">
+			<h1 align ="center">Usuarios</h1>
+			<br/>
+
+			<table class="table table-striped table-hover ">
+			  <thead>
+			    <tr>
+			      <th>Usuario</th>
+			      <th>Nombre</th>
+			      <th>Correo</th>
+			    </tr>
+			  </thead>
+
+			  <tbody>
+			  <!-- ciclo thymeleaf -->
+			    <tr th:each="i: ${#numbers.sequence(0, usuarios.size()-1)}">
+                              <td th:text="${usuarios.get(__${i}__).getNombreUsuario()}">Usuario</td>
+                              <td th:text="${usuarios.get(__${i}__).getNombre()}">Nombre</td>
+                              <td th:text="${usuarios.get(__${i}__).getCorreo()}">Correo</td>
+			    </tr>
+
+				</tbody>
+			</table>
+
+			<div class="container">
+				<a href="AgregarUsuario" class="btn btn-primary">Agregar Usuario</a>
+			</div>
+
+		</div>
+
+</body>
+
+
+
+</html>

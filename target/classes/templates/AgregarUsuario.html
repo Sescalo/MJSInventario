@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	  <title>MJSInventario</title>
+	  <meta charset="utf-8"/>
+	  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+	  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script> -->
+	  <!-- <script src="/home/oskr/Desktop/bootstrap-3.3.7-dist/css/bootstrap.css"></script> -->
+	</head>
+
+	<body class="" style="">
+
+		<nav class="navbar navbar-default">
+		  <div class="container">
+
+		    <div class="navbar-header">
+		      <a class="navbar-brand" href="#">MJSInventario</a>
+		    </div>
+
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      <ul class="nav navbar-nav">
+
+	      		<!-- <li class="active"> -->
+		        <li><a href="#">Nuevo Objeto<span class="sr-only">(current)</span></a></li>
+
+		        <li class="active"><a href="#">Usuarios</a></li>
+		        <li><a href="#">Historial</a></li>
+		        <li><a href="#">Configuración</a></li>
+		      </ul>
+
+		      <ul class="nav navbar-nav navbar-right">
+		        <li><a href="#">Salir</a></li>
+		      </ul>
+
+		    </div>
+		  </div>
+		</nav>
+
+		<div class="container">
+			<h1 align ="center">Agregar Usuario</h1>
+                        <br></br>
+
+			<div class="jumbotron">
+				<form class="form-horizontal" action="#" th:action="@{/AgregarUsuario}" th:object="${usuario}" method="post">
+				  <fieldset>
+
+				    <!-- <legend>Legend</legend> -->
+
+				    <div class="form-group">
+				      <label for="nombreUsuario" class="col-lg-2 control-label">Usuario</label>
+				      <div class="col-lg-10">
+				        <input class="form-control" id="nombreUsuario" placeholder="Usuario" type="text" th:field="*{nombreUsuario}"/>
+				      </div>
+				    </div>
+
+				    <div class="form-group">
+				      <label for="nombre" class="col-lg-2 control-label">Nombre</label>
+				      <div class="col-lg-10">
+				        <input class="form-control" id="nombre" placeholder="Nombre" type="text" th:field="*{nombre}"/>
+				      </div>
+				    </div>
+
+				    <div class="form-group">
+				      <label for="correo" class="col-lg-2 control-label">Correo</label>
+				      <div class="col-lg-10">
+				        <input class="form-control" id="correo" placeholder="ejemplo@mjsi.com" type="text" th:field="*{correo}"/>
+				      </div>
+				    </div>
+
+				    <div class="form-group">
+				      <label for="telefono" class="col-lg-2 control-label">Teléfono</label>
+				      <div class="col-lg-10">
+				        <input class="form-control" id="telefono" placeholder="12345678" type="text" th:field="*{telefono}"/>
+				      </div>
+				    </div>
+                                    <br></br>
+
+				    <div class="form-group">
+				      <label for="contrasena" class="col-lg-2 control-label">Contraseña</label>
+				      <div class="col-lg-10">
+				        <input class="form-control" id="contrasena" type="password" th:field="*{contrasena}"/>
+				      </div>
+				    </div>
+
+				    <div class="form-group">
+				      <label for="contrasena" class="col-lg-2 control-label">Repetir Contraseña</label>
+				      <div class="col-lg-10">
+				        <input class="form-control" id="contrasena" type="password"/>
+
+				        <div class="checkbox">
+				          <label>
+				            <input type="checkbox"/> Administrador
+				          </label>
+				        </div>
+
+				      </div>
+				    </div>
+
+				    <div class="form-group">
+				      <div class="col-lg-10 col-lg-offset-2">
+				        <button type="reset" class="btn btn-default">Cancelar</button>
+				        <button type="submit" class="btn btn-primary">Agregar</button>
+				      </div>
+				    </div>
+
+				  </fieldset>
+				</form>
+			</div>
+
+		</div>
+
+
+	</body>
+
+
+
+</html>

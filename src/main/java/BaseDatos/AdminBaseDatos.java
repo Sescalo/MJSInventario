@@ -66,7 +66,7 @@ public class AdminBaseDatos {
 
             while(resultado.next()){
                 listaUsuarios.add(new Usuario(resultado.getInt("idUsuario"), resultado.getString("nombreUsuario"),resultado.getString("nombre"),
-                        resultado.getString("correo"), resultado.getInt("cedula"), resultado.getInt("telefono"), resultado.getString("contrasena")  ));
+                        resultado.getString("correo"), resultado.getInt("telefono"), resultado.getString("contrasena")  ));
             }
         }
 
@@ -94,5 +94,25 @@ public class AdminBaseDatos {
         } catch (Exception e) {
 
         }
+    }
+    
+    // Verifica si el usuario X existe
+    public boolean existeUsuario(Usuario usuario){
+        boolean existe = false;
+        
+        try{
+            stmt = conn.createStatement();
+            resultado = stmt.executeQuery("SELECT * FROM Usuario where nombreUsuario = '"+usuario.getNombreUsuario()+"' and"
+                    + " contrasena = '"+usuario.getContrasena()+"';");
+            
+            existe = resultado.next();
+            System.out.println("existe:"+ existe);
+        }
+        
+        catch(Exception e){
+            System.out.println("Error de consulta");
+        }
+        
+        return existe;
     }
 }
