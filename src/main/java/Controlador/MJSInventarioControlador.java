@@ -1,7 +1,6 @@
 package Controlador;
 
 import BaseDatos.AdminBaseDatos;
-import Modelo.Greeting;
 import Modelo.Usuario;
 import java.sql.SQLException;
 
