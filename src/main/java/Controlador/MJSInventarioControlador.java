@@ -37,13 +37,19 @@ public class MJSInventarioControlador {
     @GetMapping("/AgregarUsuario")
     public String getAgregarUsuario(Model model) {
         model.addAttribute("usuario", new Usuario());
+        
         return "AgregarUsuario";
     }
     
     @PostMapping("/AgregarUsuario")
     public String postAgregarUsuario(Model model, @ModelAttribute Usuario usuario) {
-        System.out.println(usuario.toString());
+        //Encriptar contrasena del usuario
+        usuario.encriptarContra();
+                
+        System.out.println("asad"+usuario.toString());
+        
         adminBD.agregarUsuario(usuario);
+        
         return "AgregarUsuario";
     }
     

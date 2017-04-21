@@ -10,10 +10,10 @@ import java.util.ArrayList;
  */
 public class AdminBaseDatos {
 
-    private static final String DB_URL = "jdbc:mysql://localhost/mjsidatabase";
+    private static final String DB_URL = "jdbc:mysql://localhost/MJSIDataBase";
     //  Usuario
     private static final String USER = "Sescalo";
-    private static final String PASS = "holamundo";
+    private static final String PASS = "holaMundo96.";
 
 //    private static final String USER = "oskrg1130";
 //    private static final String PASS = "noob3001";
@@ -33,14 +33,15 @@ public class AdminBaseDatos {
     //    Agregar un producto a la base de datos
     public void agregarUsuario(Usuario usuario){
         try{
-            prepStmt = conn.prepareStatement("insert into Usuario (nombreUsuario, nombre, correo, telefono, contrasena) VALUES (?,?,?,?,?);");
+            prepStmt = conn.prepareStatement("insert into Usuario (nombreUsuario, nombre, correo, telefono, contrasena, isAdmin) VALUES (?,?,?,?,?,?);");
 
             prepStmt.setString(1, usuario.getNombreUsuario());
             prepStmt.setString(2, usuario.getNombre());
             prepStmt.setString(3, usuario.getCorreo());
             prepStmt.setInt(4, usuario.getTelefono());
-            prepStmt.setString(5, usuario.getContrasena()); //Modificar oontrasena con MD5
-
+            prepStmt.setString(5, usuario.getContrasena()); //Modificar contrasena con MD5
+            prepStmt.setBoolean(6, usuario.isIsAdmin());
+            
             int res = prepStmt.executeUpdate();
             if(res>0){
                 System.out.println("Usuario guardado");
@@ -52,7 +53,7 @@ public class AdminBaseDatos {
         }
 
         catch(Exception e){
-
+            System.out.println("Error al agregar Usuario");
         }
     }
 
@@ -65,8 +66,9 @@ public class AdminBaseDatos {
             resultado = stmt.executeQuery("SELECT * FROM Usuario;");
 
             while(resultado.next()){
-                listaUsuarios.add(new Usuario(resultado.getInt("idUsuario"), resultado.getString("nombreUsuario"),resultado.getString("nombre"),
-                        resultado.getString("correo"), resultado.getInt("telefono"), resultado.getString("contrasena")  ));
+                listaUsuarios.add( new Usuario(resultado.getInt("idUsuario"), resultado.getString("nombreUsuario"),resultado.getString("nombre"),
+                        resultado.getString("correo"), resultado.getInt("telefono"), resultado.getString("contrasena"), resultado.getBoolean("isAdmin")
+                ));
             }
         }
 

@@ -1,5 +1,8 @@
 package Modelo;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 /**
  * Created by Sergio on 8/4/2017.
  */
@@ -10,18 +13,44 @@ public class Usuario {
     private String correo;
     private int telefono;
     private String contrasena;
+    private boolean isAdmin;
 
-    public Usuario(int idUsuario, String nombreUsuario, String nombre, String correo, int telefono, String contrasena) {
+    public Usuario(int idUsuario, String nombreUsuario, String nombre, String correo, int telefono, String contrasena, boolean isAdmin) {
         this.idUsuario = idUsuario;
         this.nombreUsuario = nombreUsuario;
         this.nombre = nombre;
         this.correo = correo;
         this.telefono = telefono;
         this.contrasena = contrasena;
+        this.isAdmin = isAdmin;
     }
     
     public Usuario(){
     }
+    
+    public void encriptarContra(){
+        try {
+            // Create MessageDigest instance for MD5
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            //Add password bytes to digest
+            md.update(this.contrasena.getBytes());
+            //Get the hash's bytes 
+            byte[] bytes = md.digest();
+            //This bytes[] has bytes in decimal format;
+            //Convert it to hexadecimal format
+            StringBuilder sb = new StringBuilder();
+            for(int i=0; i< bytes.length ;i++)            {
+                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            }
+            //Get complete hashed password in hex format
+            this.contrasena = sb.toString();
+        } 
+        catch (NoSuchAlgorithmException e)        {
+            e.printStackTrace();
+        }
+//        System.out.println(generatedPassword);
+    }
+    
 
     public String getNombreUsuario() {
         return nombreUsuario;
@@ -70,4 +99,14 @@ public class Usuario {
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
+
+    public boolean isIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+
+    
 }
