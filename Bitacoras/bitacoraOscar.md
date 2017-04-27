@@ -22,3 +22,4 @@
 | 15/04/17| Se comienza a redactar el ERS correspondiente a la segunda Iteracion. |
 | 16/04/17| Se comienza el plan de pruebas del ERS2. |
 | 16/04/17| Se finalizan el ERS y Plan de pruebas de la segunda iteración. |
+| 21/04/17| Corrigió atributos del usuario 'isAdmin'. |
