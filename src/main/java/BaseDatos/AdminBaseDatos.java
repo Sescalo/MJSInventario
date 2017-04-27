@@ -117,4 +117,28 @@ public class AdminBaseDatos {
         
         return existe;
     }
+    
+    public void actualizarUsuario(Usuario usuario) { 
+            try{
+                prepStmt = conn.prepareStatement("update Usuario set nombreUsuario = ?, nombre = ?, correo = ?, "
+                        + "telefono = ?, isAdmin = 1 where idUsuario = ?;");
+                prepStmt.setString(1, usuario.getNombreUsuario());
+                prepStmt.setString(2, usuario.getNombre());
+                prepStmt.setString(3, usuario.getCorreo());
+                prepStmt.setInt(4, usuario.getTelefono());
+                prepStmt.setInt(5, usuario.getIdUsuario());
+                int res = prepStmt.executeUpdate();
+                    if(res>0){
+                        System.out.println("Usuario Actualizado");
+                    }
+                    else{
+                        System.out.println("Error al actualizar el usuario");
+                    }
+//                  conn.close();
+            }
+        
+            catch(Exception e){
+            }
+    }
+    
 }

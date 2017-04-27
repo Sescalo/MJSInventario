@@ -56,9 +56,11 @@
 			  <tbody>
 			  <!-- ciclo thymeleaf -->
 			    <tr th:each="i: ${#numbers.sequence(0, usuarios.size()-1)}">
-                              <td th:text="${usuarios.get(__${i}__).getNombreUsuario()}">Usuario</td>
-                              <td th:text="${usuarios.get(__${i}__).getNombre()}">Nombre</td>
-                              <td th:text="${usuarios.get(__${i}__).getCorreo()}">Correo</td>
+                                <a href ="VerUsuario">
+                                    <td th:text="${usuarios.get(__${i}__).getNombreUsuario()}">Usuario</td>
+                                    <td th:text="${usuarios.get(__${i}__).getNombre()}">Nombre</td>
+                                    <td th:text="${usuarios.get(__${i}__).getCorreo()}">Correo</td>
+                                </a>
 			    </tr>
 
 				</tbody>
