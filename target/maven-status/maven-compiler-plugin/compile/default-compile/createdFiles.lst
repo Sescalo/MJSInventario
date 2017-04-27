@@ -1,4 +1,5 @@
 Controlador/Application.class
 Controlador/MJSInventarioControlador.class
 Modelo/Usuario.class
+Modelo/DatosUsuario.class
 BaseDatos/AdminBaseDatos.class

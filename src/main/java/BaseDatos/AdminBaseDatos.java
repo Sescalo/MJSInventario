@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class AdminBaseDatos {
 
     private static final String DB_URL = "jdbc:mysql://localhost/MJSIDataBase";
+    
     //  Usuario
     private static final String USER = "Sescalo";
     private static final String PASS = "holaMundo96.";
@@ -107,14 +108,14 @@ public class AdminBaseDatos {
             resultado = stmt.executeQuery("SELECT * FROM Usuario where nombreUsuario = '"+usuario.getNombreUsuario()+"' and"
                     + " contrasena = '"+usuario.getContrasena()+"';");
             
-            existe = resultado.next();
-            System.out.println("existe:"+ existe);
+            existe = resultado.next();   
         }
         
         catch(Exception e){
             System.out.println("Error de consulta");
         }
         
+        System.out.println("El usuario existe:"+ existe);
         return existe;
     }
 }

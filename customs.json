@@ -1,5 +1,7 @@
 {
-    "elements": {},
+    "elements": {
+        "input": {}
+    },
     "attributes": {
         "th:text": {
             "context": "td"
