@@ -19,6 +19,7 @@ public class MJSInventarioControlador {
         this.adminBD = new AdminBaseDatos();
     }
     
+//    Inicio Sesion
     @GetMapping("/InicioSesion")
     public String getInicioSesion(Model model) {
         model.addAttribute("usuario", new Usuario());
@@ -27,13 +28,17 @@ public class MJSInventarioControlador {
 
     @PostMapping("/InicioSesion")
     public String postInicioSesion(Model model, @ModelAttribute Usuario usuario) {
+        usuario.encriptarContra();
+        
         if(!adminBD.existeUsuario(usuario)) {
             model.addAttribute("error", true);
             return "InicioSesion";
         }
+        
         return "pagPrincipal";
     }
     
+//    Agregar Usuario
     @GetMapping("/AgregarUsuario")
     public String getAgregarUsuario(Model model) {
         model.addAttribute("usuario", new Usuario());
