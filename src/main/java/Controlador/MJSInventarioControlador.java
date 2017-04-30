@@ -18,12 +18,6 @@ public class MJSInventarioControlador {
     AdminBaseDatos adminBD;
     
 //  =========Atributos del modelo     
-    public int indiceUsuario;
-    
-    @ModelAttribute("indiceUsuario")
-    public int indiceUsuario(){
-        return this.indiceUsuario;
-    }
     
     public MJSInventarioControlador() throws ClassNotFoundException, SQLException{
         this.adminBD = new AdminBaseDatos();
@@ -38,16 +32,19 @@ public class MJSInventarioControlador {
     }
 
     @PostMapping("/InicioSesion")
-    public String postInicioSesion(Model model, @ModelAttribute Usuario usuario) {
+    public String postInicioSesion(Model model, @ModelAttribute Usuario usuario){
         usuario.encriptarContra();
         
         if(!adminBD.existeUsuario(usuario)) { //No existe el usuario
 //            model.addAttribute("error", true);
+//            mostar mensaje error
+            usuario = new Usuario();
             return "InicioSesion";
         }
         
         return "pagPrincipal";
     }
+    
     
 //    Pag Principal
     @GetMapping("/pagPrincipal")
@@ -76,13 +73,6 @@ public class MJSInventarioControlador {
         return "AgregarUsuario";
     }
     
-    DatosUsuario d = new DatosUsuario(1);
-    
-    @ModelAttribute("datos")
-    public DatosUsuario datos(){
-        return this.d;
-    }
-    
 //    Lista Usuarios
     @GetMapping("/Usuarios")
     public String getUsuarios(Model model) {
@@ -94,16 +84,11 @@ public class MJSInventarioControlador {
     }       
     
     
-    
 //    Editar un Usuario
     @GetMapping("/EditarUsuario")
-    public String getEditarUsuario(Model model) {
+    public String getEditarUsuario(Model model, @RequestParam(value = "ind") int indiceUsuario) {
         
-        model.addAttribute("usuario", adminBD.listaUsuarios().get(indiceUsuario()));
-        
-//        System.out.println("Indice: "+ indiceUsuario);
-//        System.out.println("Indice: "+ indiceUsuario());
-        System.out.println("Indice:" +d.getIndice());
+        model.addAttribute("usuario", adminBD.listaUsuarios().get(indiceUsuario));
         
         return "EditarUsuario";
     }
