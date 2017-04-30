@@ -20,3 +20,4 @@
 | 08/04/17 | Se continuó con el trabajo de la iteración, en la cual se empezaron a desarrollar los HTML necesarios para el proyecto y por ende, la forma de conectar estos con el controlador en la lógica. |
 | 08/04/17 | Se continuó con el trabajo de la iteración, en la cual se empezaron a desarrollar los HTML necesarios para el proyecto y por ende, la forma de conectar estos con el controlador en la lógica. |
 | 15/04/17 | Se definieron y dividieron los casos de uso por realizar para esta segunda iteración, en la cual se decidió desarrollar 6 casos de uso, 3 por cada miembro del equipo. Además, se empezó a desarrollar el ERS para esta segunda iteración. |
+| 21/04/17 | Se agregaron en el usuario los atributos para determinar si el mismo es un administrador. |

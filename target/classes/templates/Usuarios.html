@@ -51,23 +51,20 @@
 			      <th>Nombre</th>
 			      <th>Correo</th>
 			    </tr>
-			  </thead>
+                </thead>
 
 			  <tbody>
 			  <!-- ciclo thymeleaf -->
+
 			    <tr th:each="i: ${#numbers.sequence(0, usuarios.size()-1)}" 
                                 th:onclick="'javascript:rowClicked(__${i}__);'">  
-                                
-<!--                            <form action="#" th:action="@{/guardarIndex}" th:object="${datos}">
-                                <input type="hidden" th:field="*{indice}" />
-                            </form>-->
-                          
-                              <td th:text="${usuarios.get(__${i}__).getNombreUsuario()}">Usuario</td>
-                              <td th:text="${usuarios.get(__${i}__).getNombre()}">Nombre</td>
-                              <td th:text="${usuarios.get(__${i}__).getCorreo()}">Correo</td>
-			    </tr>
+         
+                    <td th:text="${usuarios.get(__${i}__).getNombreUsuario()}">Usuario</td>
+                    <td th:text="${usuarios.get(__${i}__).getNombre()}">Nombre</td>
+                    <td th:text="${usuarios.get(__${i}__).getCorreo()}">Correo</td>
+                </tr>
 
-				</tbody>
+                </tbody>
 			</table>
 
 			<div class="container">
@@ -76,8 +73,9 @@
 
 		</div>
 
-</body>
+        </body>
 
+        
 <script>
     
 //    funcion cuando se clickea una fila
