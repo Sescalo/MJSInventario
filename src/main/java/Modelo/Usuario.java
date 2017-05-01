@@ -28,27 +28,28 @@ public class Usuario {
     public Usuario(){
     }
     
-    public void encriptarContra(){
+    public String encriptarContra(String pw){
+        StringBuilder sb = new StringBuilder();
+        
         try {
             // Create MessageDigest instance for MD5
             MessageDigest md = MessageDigest.getInstance("MD5");
             //Add password bytes to digest
-            md.update(this.contrasena.getBytes());
+            md.update(pw.getBytes());
             //Get the hash's bytes 
             byte[] bytes = md.digest();
             //This bytes[] has bytes in decimal format;
             //Convert it to hexadecimal format
-            StringBuilder sb = new StringBuilder();
             for(int i=0; i< bytes.length ;i++)            {
                 sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
             }
             //Get complete hashed password in hex format
-            this.contrasena = sb.toString();
         } 
         catch (NoSuchAlgorithmException e)        {
             e.printStackTrace();
         }
-//        System.out.println(generatedPassword);
+        
+        return sb.toString();
     }
     
 
@@ -89,7 +90,9 @@ public class Usuario {
     }
 
     public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+//        System.out.println("Seteando contrasena");
+        
+        this.contrasena = encriptarContra(contrasena);
     }
 
     public int getIdUsuario() {
@@ -106,6 +109,16 @@ public class Usuario {
 
     public void setIsAdmin(boolean isAdmin) {
         this.isAdmin = isAdmin;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "idUsuario=" + idUsuario + 
+                ", nombreUsuario=" + nombreUsuario + 
+                ", nombre=" + nombre + ", correo=" + 
+                correo + ", telefono=" + telefono + 
+                ", contrasena=" + contrasena + 
+                ", isAdmin=" + isAdmin + '}';
     }
 
     

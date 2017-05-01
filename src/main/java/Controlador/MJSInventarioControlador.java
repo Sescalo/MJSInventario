@@ -4,6 +4,7 @@ import BaseDatos.AdminBaseDatos;
 import Modelo.DatosUsuario;
 import Modelo.Usuario;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,11 +17,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class MJSInventarioControlador {
     
     AdminBaseDatos adminBD;
+    ArrayList <Usuario> usuarios;
     
-//  =========Atributos del modelo     
+//  =========Atributos del modelo
+    @ModelAttribute("usuarios")
+    public ArrayList<Usuario> usuarios() {
+//        this.usuarios = adminBD.listaUsuarios();
+        
+        return this.usuarios;
+    }
     
+//    Consructor
     public MJSInventarioControlador() throws ClassNotFoundException, SQLException{
         this.adminBD = new AdminBaseDatos();
+        this.usuarios = adminBD.listaUsuarios();
+        
+        System.out.println("Controlador Listo");
     }
     
 //    Inicio Sesion
@@ -33,7 +45,7 @@ public class MJSInventarioControlador {
 
     @PostMapping("/InicioSesion")
     public String postInicioSesion(Model model, @ModelAttribute Usuario usuario){
-        usuario.encriptarContra();
+//        usuario.encriptarContra();
         
         if(!adminBD.existeUsuario(usuario)) { //No existe el usuario
 //            model.addAttribute("error", true);
@@ -64,22 +76,23 @@ public class MJSInventarioControlador {
     @PostMapping("/AgregarUsuario")
     public String postAgregarUsuario(Model model, @ModelAttribute Usuario usuario) {
         //Encriptar contrasena del usuario
-        usuario.encriptarContra();
+//        usuario.encriptarContra();
                 
-        System.out.println("asad"+usuario.toString());
+        System.out.println(usuario.toString());
         
         adminBD.agregarUsuario(usuario);
         
-        return "AgregarUsuario";
+        return "Usuarios";
     }
     
 //    Lista Usuarios
     @GetMapping("/Usuarios")
     public String getUsuarios(Model model) {
-        model.addAttribute("usuarios", adminBD.listaUsuarios());
+        System.out.println("GET Usuarios");
+//        model.addAttribute("usuarios", adminBD.listaUsuarios());
 
-//        model.addAttribute("datos", d);
-      
+        this.usuarios = adminBD.listaUsuarios();
+        
         return "Usuarios";
     }       
     
@@ -89,7 +102,32 @@ public class MJSInventarioControlador {
     public String getEditarUsuario(Model model, @RequestParam(value = "ind") int indiceUsuario) {
         
         model.addAttribute("usuario", adminBD.listaUsuarios().get(indiceUsuario));
+        System.out.println(adminBD.listaUsuarios().get(indiceUsuario).toString());
         
         return "EditarUsuario";
+    }
+    
+    @PostMapping("/EditarUsuario")
+    public String postEditarUsuario(Model model, @ModelAttribute Usuario usuario, @RequestParam(value = "action", required = true) String action) {
+        
+        System.out.println(usuario.toString());
+        //Preguntar contrasena administrador
+        adminBD.actualizarUsuario(usuario);
+        
+
+        if (action.equals("eliminar")){
+            adminBD.eliminarUsuario(usuario);
+        }
+        
+        
+        else if(action.equals("actualizar")){
+        
+        }
+        
+        
+        
+//        actualizar usuarios      
+//        this.usuarios = adminBD.listaUsuarios();
+        return "Usuarios";
     }
 }

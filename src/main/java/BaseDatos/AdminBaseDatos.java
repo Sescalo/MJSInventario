@@ -89,9 +89,9 @@ public class AdminBaseDatos {
 
             int res = prepStmt.executeUpdate();
             if (res > 0) {
-                System.out.println("Usuario eliminado correctamente");
+                System.out.println("Usuario eliminado!");
             } else {
-                System.out.println("Error al eliminar el usuario");
+                System.out.println("Error al eliminar el Usuario");
             }
 //            conn.close();
         } catch (Exception e) {
@@ -119,15 +119,19 @@ public class AdminBaseDatos {
         return existe;
     }
     
+    // Actualiza un usuario
     public void actualizarUsuario(Usuario usuario) { 
             try{
                 prepStmt = conn.prepareStatement("update Usuario set nombreUsuario = ?, nombre = ?, correo = ?, "
-                        + "telefono = ?, isAdmin = 1 where idUsuario = ?;");
+                        + "telefono = ?, isAdmin = ? where idUsuario = ?;");
+                
                 prepStmt.setString(1, usuario.getNombreUsuario());
                 prepStmt.setString(2, usuario.getNombre());
                 prepStmt.setString(3, usuario.getCorreo());
                 prepStmt.setInt(4, usuario.getTelefono());
-                prepStmt.setInt(5, usuario.getIdUsuario());
+                prepStmt.setBoolean(5, usuario.isIsAdmin());
+                prepStmt.setInt(6, usuario.getIdUsuario());
+                
                 int res = prepStmt.executeUpdate();
                     if(res>0){
                         System.out.println("Usuario Actualizado");

@@ -24,7 +24,7 @@
 	      		<!-- <li class="active"> -->
 		        <li><a href="#">Nuevo Objeto<span class="sr-only">(current)</span></a></li>
 
-		        <li class="active"><a href="#">Usuarios</a></li>
+		        <li class="active"><a href="Usuarios">Usuarios</a></li>
 		        <li><a href="#">Historial</a></li>
 		        <li><a href="#">Configuración</a></li>
 
@@ -52,11 +52,10 @@
 			    </tr>
                 </thead>
 
-			  <tbody>
+			  <tbody th:if="${usuarios.size() != 0}">
 			  <!-- ciclo thymeleaf -->
 
-			    <tr th:each="i: ${#numbers.sequence(0, usuarios.size()-1)}" 
-                                th:onclick="'javascript:rowClicked(__${i}__);'">
+			    <tr th:each="i: ${#numbers.sequence(0, usuarios.size()-1)}" th:onclick="'javascript:rowClicked(__${i}__);'">
                     
                     <td th:text="${usuarios.get(__${i}__).getNombreUsuario()}">Usuario</td>
                     <td th:text="${usuarios.get(__${i}__).getNombre()}">Nombre</td>

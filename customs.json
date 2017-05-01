@@ -6,8 +6,17 @@
         "th:text": {
             "context": "td"
         },
+        "th:if": {
+            "context": "tbody"
+        },
+        "th:onclick": {
+            "context": "button"
+        },
         "th:action": {
             "context": "form"
+        },
+        "action": {
+            "context": "button"
         },
         "th:field": {
             "context": "input"
