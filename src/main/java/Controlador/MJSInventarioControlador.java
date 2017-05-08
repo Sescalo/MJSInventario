@@ -2,9 +2,12 @@ package Controlador;
 
 import BaseDatos.AdminBaseDatos;
 import Modelo.DatosUsuario;
+import Modelo.EscribirExcel;
 import Modelo.Usuario;
+import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,9 +31,12 @@ public class MJSInventarioControlador {
     }
     
 //    Consructor
-    public MJSInventarioControlador() throws ClassNotFoundException, SQLException{
+    public MJSInventarioControlador() throws ClassNotFoundException, SQLException, FileNotFoundException, InvalidFormatException{
         this.adminBD = new AdminBaseDatos();
         this.usuarios = adminBD.listaUsuarios();
+        
+        EscribirExcel es = new EscribirExcel();
+        es.actualizarCelda();
         
         System.out.println("Controlador Listo");
     }
