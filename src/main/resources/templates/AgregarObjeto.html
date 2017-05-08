@@ -17,31 +17,34 @@
 
     <body class="" style="">
 
-        <!-- Barra de navegacion -->
-        <nav class="navbar navbar-default">
-          <div class="container">
+      <nav class="navbar navbar-default">
+        <div class="container">
 
-		    <div class="navbar-header">
-          <a class="navbar-brand" href="#">MJSInventario</a>
-		    </div>
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">MJSInventario</a>
+          </div>
 
-		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		      <ul class="nav navbar-nav">
-	      		<!-- <li class="active"> -->
-		        <li  class="active"> <a href="AgregarObjeto">Agregar Objeto <span class="sr-only">(current)</span> </a></li>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
 
-		        <li><a href="Usuarios">Usuarios</a></li>
-		        <li><a href="#">Historial</a></li>
-		        <li><a href="#">Configuración</a></li>
-		      </ul>
+              <!-- <li class="active"> -->
+              <li class="active"><a href="AgregarObjeto">Agregar Objeto<span class="sr-only">(current)</span></a></li>
 
-		      <ul class="nav navbar-nav navbar-right">
-		        <li><a href="#">Salir</a></li>
-		      </ul>
+              <li><a href="Usuarios">Usuarios</a></li>
+              <li><a href="#">Historial</a></li>
+              <li><a href="#">Configuración</a></li>
 
-		    </div>
-		  </div>
-		</nav>
+            </ul>
+
+
+
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#">Salir</a></li>
+            </ul>
+
+          </div>
+        </div>
+      </nav>
 
     <div class="container">
       <h1 align ="center">Agregar Objeto</h1>
@@ -53,13 +56,13 @@
       <!-- <div class="row"> -->
         <div class="jumbotron">
 
-          <form class="form-horizontal">
+          <form class="form-horizontal" action="#" th:action="@{/AgregarObjeto}" th:object="${objeto}" method="post">
             <fieldset>
 
               <div class="form-group">
                 <label for="inputObjeto" class="col-lg-1 control-label">Objeto</label>
                 <div class="col-lg-5">
-                  <input class="form-control" id="inputObjeto" placeholder="Objeto" type="text"/>
+                  <input class="form-control" id="inputObjeto" placeholder="Objeto" type="text" th:field="*{nombreObjeto}"/>
                 </div>
               </div>
 
@@ -70,35 +73,35 @@
                 <div class="form-group">
                   <label for="adquisicion" class="col-lg-2 control-label">Forma adquisición</label>
                   <div class="col-lg-10">
-                    <input class="form-control" id="inputObjeto" placeholder="" type="text"/>
+                    <input class="form-control" id="inputObjeto" placeholder="" type="text" th:field="*{formaAdquisicion}"/>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="fechaIngreso" class="col-lg-2 control-label">Fecha Ingreso</label>
                   <div class="col-lg-10">
-                    <input class="form-control" id="fechaIngreso" placeholder="dd/mm/aaaa" type="text"/>
+                    <input class="form-control" id="fechaIngreso" placeholder="dd/mm/aaaa" type="text" th:field="*{fechaIngreso}"/>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="fechaCatalogo" class="col-lg-2 control-label">Fecha Catálogo</label>
                   <div class="col-lg-10">
-                    <input class="form-control" id="fechaCatalogo" placeholder="dd/mm/aaaa" type="text"/>
+                    <input class="form-control" id="fechaCatalogo" placeholder="dd/mm/aaaa" type="text" th:field="*{fechaCatalogo}"/>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="numRegistro" class="col-lg-2 control-label">No. Registro</label>
                   <div class="col-lg-10">
-                    <input class="form-control" id="numRegistro" placeholder="" type="text"/>
+                    <input class="form-control" id="numRegistro" placeholder="" type="text" th:field="*{numRegistro}"/>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="fuente" class="col-lg-2 control-label">Fuente</label>
                   <div class="col-lg-10">
-                    <input class="form-control" id="fuente" placeholder="" type="text"/>
+                    <input class="form-control" id="fuente" placeholder="" type="text" th:field="*{nombreFuente}"/>
                   </div>
                 </div>
 
@@ -107,37 +110,37 @@
               <div id="right">
 
                 <div class="form-group">
-                  <label for="numRegistro" class="col-lg-2 control-label">Valor Económico</label>
+                  <label for="valorEconomico" class="col-lg-2 control-label">Valor Económico</label>
                   <div class="col-lg-10">
-                    <input class="form-control" id="numRegistro" placeholder="" type="text"/>
+                    <input class="form-control" id="valorEconomico" placeholder="" type="text" th:field="*{valorEconomico}"/>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="fechaInventario" class="col-lg-2 control-label">Fecha Inventario</label>
                   <div class="col-lg-10">
-                    <input class="form-control" id="fechaInventario" placeholder="dd/mm/aaaa" type="text"/>
+                    <input class="form-control" id="fechaInventario" placeholder="dd/mm/aaaa" type="text" th:field="*{fechaInventario}"/>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="numCatalogo" class="col-lg-2 control-label">No. Catalogo</label>
                   <div class="col-lg-10">
-                    <input class="form-control" id="numCatalogo" placeholder="" type="text"/>
+                    <input class="form-control" id="numCatalogo" placeholder="" type="text" th:field="*{numCatalogo}"/>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="numInventario" class="col-lg-2 control-label">No. Inventario</label>
                   <div class="col-lg-10">
-                    <input class="form-control"  id="numInventario" placeholder="" type="text"/>
+                    <input class="form-control"  id="numInventario" placeholder="" type="text" th:field="*{numInventario}"/>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="dirFuente" class="col-lg-2 control-label">Dir. Fuente</label>
                   <div class="col-lg-10">
-                    <input class="form-control" id="dirFuente" placeholder="" type="text"/>
+                    <input class="form-control" id="dirFuente" placeholder="" type="text" th:field="*{direccionFuente}"/>
                   </div>
                 </div>
 
@@ -145,7 +148,7 @@
 
             </fieldset>
 
-            <!-- <hr> -->
+             <br></br>
             <h2>Características</h2>
             <fieldset>
 
@@ -154,42 +157,42 @@
                 <div class="form-group">
                   <label for="alto" class="col-lg-2 control-label">Alto</label>
                   <div class="col-lg-10">
-                    <input class="form-control" id="alto" placeholder="" type="text"/>
+                    <input class="form-control" id="alto" placeholder="" type="text" th:field="*{alto}"/>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="largo" class="col-lg-2 control-label">Largo</label>
                   <div class="col-lg-10">
-                    <input class="form-control" id="largo" placeholder="" type="text"/>
+                    <input class="form-control" id="largo" placeholder="" type="text" th:field="*{largo}"/>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="espesor" class="col-lg-2 control-label">Espesor</label>
                   <div class="col-lg-10">
-                    <input class="form-control" id="espesor" placeholder="" type="text"/>
+                    <input class="form-control" id="espesor" placeholder="" type="text" th:field="*{espesor}"/>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="procedencia" class="col-lg-3 control-label">Procedencia</label>
                   <div class="col-lg-10">
-                    <textarea class="form-control" rows="4" id="procedencia"></textarea>
+                    <textarea class="form-control" rows="4" id="procedencia" th:field="*{procedencia}"></textarea>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="autor" class="col-lg-2 control-label">Autor</label>
                   <div class="col-lg-10">
-                    <input class="form-control" id="autor" placeholder="" type="text"/>
+                    <input class="form-control" id="autor" placeholder="" type="text" th:field="*{autor}"/>
                   </div>
                 </div>
 
                 <div class="form-group">
                     <label for="numNegativo" class="col-lg-2 control-label">No. Negativo</label>
                     <div class="col-lg-10">
-                        <input class="form-control" id="numNegativo" placeholder="" type="text"/>
+                        <input class="form-control" id="numNegativo" placeholder="" type="text" th:field="*{numeroNegativo}"/>
                     </div>
                 </div>
 
@@ -200,35 +203,35 @@
                 <div class="form-group">
                   <label for="ancho" class="col-lg-2 control-label">Ancho</label>
                   <div class="col-lg-10">
-                    <input class="form-control" id="ancho" placeholder="" type="text"/>
+                    <input class="form-control" id="ancho" placeholder="" type="text" th:field="*{ancho}"/>
                   </div>
                 </div>
 
                   <div class="form-group">
                     <label for="diametro" class="col-lg-2 control-label">Diámetro</label>
                     <div class="col-lg-10">
-                      <input class="form-control" id="diametro" placeholder="" type="text"/>
+                      <input class="form-control" id="diametro" placeholder="" type="text" th:field="*{diametro}"/>
                     </div>
                   </div>
 
                   <div class="form-group">
                     <label for="peso" class="col-lg-2 control-label">Peso</label>
                     <div class="col-lg-10">
-                      <input class="form-control" id="peso" placeholder="" type="text"/>
+                      <input class="form-control" id="peso" placeholder="" type="text" th:field="*{peso}"/>
                     </div>
                   </div>
 
 									<div class="form-group">
 	                  <label for="materiaTecnica" class="col-lg-3 control-label">Materia y Técnica</label>
 	                  <div class="col-lg-10">
-	                    <textarea class="form-control" rows="3" id="materiaTecnica"></textarea>
+	                    <textarea class="form-control" rows="3" id="materiaTecnica" th:field="*{materiaYTecnica}"></textarea>
 	                  </div>
 	                </div>
 
 									<div class="form-group">
                     <label for="epoca" class="col-lg-2 control-label">Epoca</label>
                     <div class="col-lg-10">
-                      <input class="form-control" id="epoca" placeholder="" type="text"/>
+                      <input class="form-control" id="epoca" placeholder="" type="text" th:field="*{epoca}"/>
                     </div>
                   </div>
 
@@ -240,7 +243,7 @@
 						<h2>Descripción</h2>
 						<fieldset>
 							<div class="col-lg-10">
-								<textarea class="form-control" rows="4" id="descripcion"></textarea>
+								<textarea class="form-control" rows="4" id="descripcion" th:field="*{descripcion}"></textarea>
 							</div>
 						</fieldset>
 
@@ -248,7 +251,7 @@
 						<h2>Documentación</h2>
 						<fieldset>
 							<div class="col-lg-10">
-								<textarea class="form-control" rows="4" id="documentacion"></textarea>
+								<textarea class="form-control" rows="4" id="documentacion" th:field="*{documentacion}"></textarea>
 							</div>
 						</fieldset>
 
@@ -256,7 +259,7 @@
 						<h2>Observaciones</h2>
 						<fieldset>
 							<div class="col-lg-10">
-								<textarea class="form-control" rows="4" id="observaciones"></textarea>
+								<textarea class="form-control" rows="4" id="observaciones" th:field="*{observaciones}"></textarea>
 							</div>
 						</fieldset>
 
@@ -267,14 +270,14 @@
 								<div class="form-group">
 									<label for="recibio" class="col-lg-3 control-label">Recibió</label>
 									<div class="col-lg-10">
-										<input class="form-control" id="recibio" placeholder="" type="text"/>
+										<input class="form-control" id="recibio" placeholder="" type="text" th:field="*{recibio}"/>
 									</div>
 								</div>
 
 								<div class="form-group">
 									<label for="quienCatalogo" class="col-lg-3 control-label">Catalogó</label>
 									<div class="col-lg-10">
-										<input class="form-control" id="quienCatalogo" placeholder="" type="text"/>
+										<input class="form-control" id="quienCatalogo" placeholder="" type="text" th:field="*{catalogo}"/>
 									</div>
 								</div>
 
@@ -283,16 +286,16 @@
 							<div id="right">
 
 								<div class="form-group">
-									<label for="recibio" class="col-lg-3 control-label">Recibió</label>
+									<label for="quienInventario" class="col-lg-3 control-label">Inventarió</label>
 									<div class="col-lg-10">
-										<input class="form-control" id="recibio" placeholder="" type="text"/>
+										<input class="form-control" id="quienInventario" placeholder="" type="text" th:field="*{inventario}"/>
 									</div>
 								</div>
 
 								<div class="form-group">
 									<label for="quienAprobo" class="col-lg-3 control-label">Aprobó</label>
 									<div class="col-lg-10">
-										<input class="form-control" id="quienAprobo" placeholder="" type="text"/>
+										<input class="form-control" id="quienAprobo" placeholder="" type="text" th:field="*{aprobo}"/>
 									</div>
 								</div>
 							</div>
@@ -306,18 +309,14 @@
 
 						</fieldset>
           </form>
+          
         </div>
       <!-- </div> -->
 
 
 
 
-
-    </div>
-
-
-
-
+  </div>
 
 
 

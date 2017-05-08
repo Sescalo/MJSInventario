@@ -3,6 +3,7 @@ package Controlador;
 import BaseDatos.AdminBaseDatos;
 import Modelo.DatosUsuario;
 import Modelo.EscribirExcel;
+import Modelo.Objeto;
 import Modelo.Usuario;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
@@ -51,7 +52,6 @@ public class MJSInventarioControlador {
 
     @PostMapping("/InicioSesion")
     public String postInicioSesion(Model model, @ModelAttribute Usuario usuario){
-//        usuario.encriptarContra();
         
         if(!adminBD.existeUsuario(usuario)) { //No existe el usuario
 //            model.addAttribute("error", true);
@@ -138,15 +138,20 @@ public class MJSInventarioControlador {
     //    Agregar un Objeto
     @GetMapping("/AgregarObjeto")
     public String getAgregarObjeto(Model model) {
+        System.out.println("Get AgregarObjeto");
+        model. addAttribute("objeto",new Objeto());
         
         return "AgregarObjeto";
     }
     
     @PostMapping("/AgregarObjeto")
-    public String postAgregarObjeto(Model model) {
+    public String postAgregarObjeto(Model model, Objeto objeto) {
       System.out.println("Post Agregar Objeto");
-
+      
+        System.out.println(objeto.toString());
         
-        return "Usuarios";
+        adminBD.agregarObjeto(objeto);
+        
+        return "pagPrincipal";
     }
 }

@@ -30,7 +30,7 @@ public class Objeto {
     private float largo;
     private float diametro;
     private float peso;
-    private String procedencia;
+        private String procedencia;
     private String materiaYTecnica;
     private String numeroNegativo;
     private String autor;
@@ -76,7 +76,9 @@ public class Objeto {
         this.catalogo = catalogo;
         this.aprobo = aprobo;
     }
-
+    
+    public Objeto(){ }
+    
     public int getIdObjeto() {
         return idObjeto;
     }
@@ -324,4 +326,11 @@ public class Objeto {
     public void setAprobo(String aprobo) {
         this.aprobo = aprobo;
     }   
+
+    @Override
+    public String toString() {
+        return "Objeto{" + "idObjeto=" + idObjeto + ", nombreObjeto=" + nombreObjeto + ", formaAdquisicion=" + formaAdquisicion + ", fechaIngreso=" + fechaIngreso + ", numRegistro=" + numRegistro + ", valorEconomico=" + valorEconomico + ", nombreFuente=" + nombreFuente + ", fechaInventario=" + fechaInventario + ", numInventario=" + numInventario + ", otrosNumeros=" + otrosNumeros + ", direccionFuente=" + direccionFuente + ", fechaCatalogo=" + fechaCatalogo + ", numCatalogo=" + numCatalogo + ", espesor=" + espesor + ", alto=" + alto + ", ancho=" + ancho + ", largo=" + largo + ", diametro=" + diametro + ", peso=" + peso + ", procedencia=" + procedencia + ", materiaYTecnica=" + materiaYTecnica + ", numeroNegativo=" + numeroNegativo + ", autor=" + autor + ", epoca=" + epoca + ", descripcion=" + descripcion + ", documentacion=" + documentacion + ", observaciones=" + observaciones + ", recibio=" + recibio + ", inventario=" + inventario + ", catalogo=" + catalogo + ", aprobo=" + aprobo + '}';
+    }
+    
+    
 }
