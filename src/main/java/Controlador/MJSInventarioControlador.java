@@ -35,8 +35,8 @@ public class MJSInventarioControlador {
         this.adminBD = new AdminBaseDatos();
         this.usuarios = adminBD.listaUsuarios();
         
-        EscribirExcel es = new EscribirExcel();
-        es.actualizarCelda();
+//        EscribirExcel es = new EscribirExcel();
+//        es.actualizarCelda();
         
         System.out.println("Controlador Listo");
     }
@@ -130,10 +130,23 @@ public class MJSInventarioControlador {
         
         }
         
-        
-        
 //        actualizar usuarios      
 //        this.usuarios = adminBD.listaUsuarios();
+        return "Usuarios";
+    }
+    
+    //    Agregar un Objeto
+    @GetMapping("/AgregarObjeto")
+    public String getAgregarObjeto(Model model) {
+        
+        return "AgregarObjeto";
+    }
+    
+    @PostMapping("/AgregarObjeto")
+    public String postAgregarObjeto(Model model) {
+      System.out.println("Post Agregar Objeto");
+
+        
         return "Usuarios";
     }
 }
