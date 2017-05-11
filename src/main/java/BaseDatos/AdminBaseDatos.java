@@ -203,6 +203,66 @@ public class AdminBaseDatos {
         }
     }
     
+    //    Actualizar un objeto a la base de datos
+    public void actualizarObjeto(Objeto objeto){
+        try{
+            prepStmt = conn.prepareStatement("update Objeto set nombreObjeto = ?, formaAdquisicion = ?, fechaIngreso = ?, "
+                        + "numRegistro = ?, valorEconomico = ?, nombreFuente = ?, fechaInventario = ?"
+                    + ", numInventario = ?, otrosNumeros = ?, direccionFuente = ?, fechaCatalogo = ?"
+                    + ", numCatalogo = ?, espesor = ?, alto = ?, ancho = ?, largo = ?, diametro = ?"
+                    + ", peso = ?, procedencia = ?, materiaYTecnica = ?, numeroNegativo = ?, autor = ?"
+                    + ", epoca = ?, descripcion = ?, documentacion = ?, observaciones = ?, recibio = ?"
+                    + ", inventario = ?, catalogo = ?, aprobo = ? where idObjeto = ?;");
+
+            prepStmt.setString(1, objeto.getNombreObjeto());
+            prepStmt.setString(2, objeto.getFormaAdquisicion());
+            prepStmt.setString(3, objeto.getFechaIngreso());
+            prepStmt.setString(4, objeto.getNumRegistro());
+            prepStmt.setFloat(5, objeto.getValorEconomico());
+            prepStmt.setString(6, objeto.getNombreFuente());
+            prepStmt.setString(7, objeto.getFechaInventario());
+            prepStmt.setString(8, objeto.getNumInventario());
+            prepStmt.setString(9, objeto.getOtrosNumeros());
+            prepStmt.setString(10, objeto.getDireccionFuente());
+            prepStmt.setString(11, objeto.getFechaCatalogo());
+            prepStmt.setString(12, objeto.getNumCatalogo());
+            prepStmt.setString(13, objeto.getEspesor());
+            prepStmt.setFloat(14, objeto.getAlto());
+            prepStmt.setFloat(15, objeto.getAncho());
+            prepStmt.setFloat(16, objeto.getLargo());
+            prepStmt.setFloat(17, objeto.getDiametro());
+            prepStmt.setFloat(18, objeto.getPeso());
+            prepStmt.setString(19, objeto.getProcedencia());
+            prepStmt.setString(20, objeto.getMateriaYTecnica());
+            prepStmt.setString(21, objeto.getNumeroNegativo());
+            prepStmt.setString(22, objeto.getAutor());
+            prepStmt.setInt(23, objeto.getEpoca());
+            prepStmt.setString(24, objeto.getDescripcion());
+            prepStmt.setString(25, objeto.getDocumentacion());
+            prepStmt.setString(26, objeto.getObservaciones());
+            prepStmt.setString(27, objeto.getRecibio());
+            prepStmt.setString(28, objeto.getInventario());
+            prepStmt.setString(29, objeto.getCatalogo());
+            prepStmt.setString(30, objeto.getAprobo());
+            prepStmt.setInt(31, objeto.getIdObjeto());
+            
+            int res = prepStmt.executeUpdate();
+            if(res>0){
+                System.out.println("Objeto actualizado");
+            }
+            else{
+                System.out.println("Error al actualizar el objeto");
+            }
+//            conn.close();
+        }
+
+        catch(Exception e){
+            System.out.println(e.getMessage());
+            System.out.println("Error al actualizar el objeto");
+        }
+    }
+    
+    
     // Obtener los objetos que hay en la base de datos
     public ArrayList<Objeto> listaObjetos() {
         ArrayList<Objeto> listaObjetos = new ArrayList<>();
@@ -221,7 +281,7 @@ public class AdminBaseDatos {
                 , resultado.getFloat("peso"), resultado.getString("procedencia"), resultado.getString("materiaYTecnica")
                 , resultado.getString("numeroNegativo"), resultado.getString("autor"), resultado.getInt("epoca")
                 , resultado.getString("descripcion"), resultado.getString("documentacion"), resultado.getString("observaciones"), resultado.getString("recibio")
-                , resultado.getString("inventario"), resultado.getString("catalgo"), resultado.getString("aprobo")));
+                , resultado.getString("inventario"), resultado.getString("catalogo"), resultado.getString("aprobo")));
             }
         }
 

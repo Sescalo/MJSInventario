@@ -21,3 +21,8 @@
 | 08/04/17 | Se continuó con el trabajo de la iteración, en la cual se empezaron a desarrollar los HTML necesarios para el proyecto y por ende, la forma de conectar estos con el controlador en la lógica. |
 | 15/04/17 | Se definieron y dividieron los casos de uso por realizar para esta segunda iteración, en la cual se decidió desarrollar 6 casos de uso, 3 por cada miembro del equipo. Además, se empezó a desarrollar el ERS para esta segunda iteración. |
 | 21/04/17 | Se agregaron en el usuario los atributos para determinar si el mismo es un administrador. |
+| 28/04/17 | Se inició el desarrollo de los documentos de ERS y plan de pruebas para la iteración 2. |
+| 30/04/17 | Se concluyó con el desarrollo de los documentos de ERS y plan de pruebas para la iteración 2, en el cual se describieron detalladamente los casos de uso respectivos para Modificar, Listar y Ver la información de un objeto. |
+| 01/05/17 | Se inició el desarrollo de la 2da iteración, en la cual se creó la clase respectiva para un objeto y sus diferentes funciones en el SABD. |
+| 04/05/17 | Se empezó a trabajar en los HTML que involucran a los objetos, esta parte ocupó más tiempo del que se esperaba. |
+| 05/05/17 | Al tener los objetos una gran cantidad de atributos, se utilizo un tiempo para validar que los datos de los mismos fueran utilizados de forma correcta. |

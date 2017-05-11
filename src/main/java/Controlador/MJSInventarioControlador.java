@@ -22,6 +22,7 @@ public class MJSInventarioControlador {
     
     AdminBaseDatos adminBD;
     ArrayList <Usuario> usuarios;
+    ArrayList <Objeto> objetos;
     
 //  =========Atributos del modelo
     @ModelAttribute("usuarios")
@@ -31,15 +32,22 @@ public class MJSInventarioControlador {
         return this.usuarios;
     }
     
+    @ModelAttribute("objetos")
+    public ArrayList<Objeto> objetos() {
+//        this.usuarios = adminBD.listaUsuarios();
+        
+        return this.objetos;
+    }
+    
 //    Consructor
     public MJSInventarioControlador() throws ClassNotFoundException, SQLException, FileNotFoundException, InvalidFormatException{
         this.adminBD = new AdminBaseDatos();
         this.usuarios = adminBD.listaUsuarios();
+        this.objetos = adminBD.listaObjetos();
         
 //        EscribirExcel es = new EscribirExcel();
 //        es.actualizarCelda();
         
-        System.out.println("Controlador Listo");
     }
     
 //    Inicio Sesion
@@ -67,7 +75,7 @@ public class MJSInventarioControlador {
 //    Pag Principal
     @GetMapping("/pagPrincipal")
     public String getPagPrincipal(Model model) {
-        
+        this.objetos = adminBD.listaObjetos();
         return "pagPrincipal";
     }
     
@@ -152,6 +160,60 @@ public class MJSInventarioControlador {
         
         adminBD.agregarObjeto(objeto);
         
+        return "pagPrincipal";
+    }
+    
+    //    Editar un objeto
+    @GetMapping("/VerObjeto")
+    public String getVerObjeto(Model model, @RequestParam(value = "ind") int indiceObjeto) {
+        
+        model.addAttribute("objeto", adminBD.listaObjetos().get(indiceObjeto));
+        System.out.println(adminBD.listaObjetos().get(indiceObjeto).toString());
+        
+        return "VerObjeto";
+    }
+    
+    @PostMapping("/VerObjeto")
+    public String postVerObjeto(Model model, @ModelAttribute Objeto objeto, @RequestParam(value = "action", required = true) String action) {
+        
+        System.out.println(objeto.toString());
+        //Preguntar contrasena administrador
+        
+        
+
+        if (action.equals("eliminar")){
+            adminBD.eliminarObjeto(objeto);
+        }
+        
+        
+        else if(action.equals("editar")){
+            return getEditarObjeto(model, objeto);
+        }
+        
+//        actualizar usuarios      
+//        this.usuarios = adminBD.listaUsuarios();
+        return "pagPrincipal";
+    }
+    
+    //    Editar un objeto
+    @GetMapping("/EditarObjeto")
+    public String getEditarObjeto(Model model, Objeto objeto) {
+        
+        model.addAttribute("objeto", objeto);
+        
+        return "EditarObjeto";
+    }
+    
+    @PostMapping("/EditarObjeto")
+    public String postEditarObjeto(Model model, @ModelAttribute Objeto objeto) {
+        
+        System.out.println(objeto.toString());
+        //Preguntar contrasena administrador
+      
+        adminBD.actualizarObjeto(objeto);
+        
+//        actualizar usuarios      
+//        this.usuarios = adminBD.listaUsuarios();
         return "pagPrincipal";
     }
 }
