@@ -27,16 +27,17 @@ public class MJSInventarioControlador {
 //  =========Atributos del modelo
     @ModelAttribute("usuarios")
     public ArrayList<Usuario> usuarios() {
-//        this.usuarios = adminBD.listaUsuarios();
-        
         return this.usuarios;
     }
     
     @ModelAttribute("objetos")
     public ArrayList<Objeto> objetos() {
-//        this.usuarios = adminBD.listaUsuarios();
-        
         return this.objetos;
+    }
+    
+    //Actualizar objetos con la base de datos
+    public void actualizarObjetos(){
+        this.objetos = adminBD.listaObjetos();
     }
     
 //    Consructor
@@ -68,14 +69,15 @@ public class MJSInventarioControlador {
             return "InicioSesion";
         }
         
-        return "pagPrincipal";
+        return getPagPrincipal(model);
     }
-    
     
 //    Pag Principal
     @GetMapping("/pagPrincipal")
     public String getPagPrincipal(Model model) {
-        this.objetos = adminBD.listaObjetos();
+
+        System.out.println("Get paginaPrincipal");
+        
         return "pagPrincipal";
     }
     
@@ -94,7 +96,8 @@ public class MJSInventarioControlador {
                 
         System.out.println(usuario.toString());
         
-        adminBD.agregarUsuario(usuario);
+        this.usuarios.add(usuario);
+        adminBD.agregarUsuario(usuario);  //agrego a Base Datos
         
         return "Usuarios";
     }
@@ -103,7 +106,6 @@ public class MJSInventarioControlador {
     @GetMapping("/Usuarios")
     public String getUsuarios(Model model) {
         System.out.println("GET Usuarios");
-//        model.addAttribute("usuarios", adminBD.listaUsuarios());
 
         this.usuarios = adminBD.listaUsuarios();
         
@@ -147,7 +149,7 @@ public class MJSInventarioControlador {
     @GetMapping("/AgregarObjeto")
     public String getAgregarObjeto(Model model) {
         System.out.println("Get AgregarObjeto");
-        model. addAttribute("objeto",new Objeto());
+        model. addAttribute("objeto", new Objeto());
         
         return "AgregarObjeto";
     }
@@ -158,7 +160,9 @@ public class MJSInventarioControlador {
       
         System.out.println(objeto.toString());
         
-        adminBD.agregarObjeto(objeto);
+        this.objetos.add(objeto);    
+        adminBD.agregarObjeto(objeto); //agrego a base datos
+        actualizarObjetos();
         
         return "pagPrincipal";
     }

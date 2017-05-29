@@ -21,7 +21,7 @@
         <div class="container">
 
           <div class="navbar-header">
-            <a class="navbar-brand" href="#">MJSInventario</a>
+            <a class="navbar-brand" href="pagPrincipal">MJSInventario</a>
           </div>
 
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -62,47 +62,48 @@
               <div class="form-group">
                 <label for="inputObjeto" class="col-lg-1 control-label">Objeto</label>
                 <div class="col-lg-5">
-                  <input class="form-control" id="inputObjeto" placeholder="Objeto" type="text" th:field="*{nombreObjeto}"/>
+                  <input disabled="" class="form-control" type="text" th:field="*{nombreObjeto}"/>
                 </div>
               </div>
-                <input type="hidden" name="idObjeto" th:field="*{idObjeto}" />
+              
+              <input type="hidden" name="idObjeto" th:field="*{idObjeto}" />
 
-                <br></br>
+              <br></br>
 
               <div id="left">
 
                 <div class="form-group">
                   <label for="adquisicion" class="col-lg-2 control-label">Forma adquisición</label>
                   <div class="col-lg-10">
-                    <input class="form-control" id="inputObjeto" placeholder="" type="text" th:field="*{formaAdquisicion}"/>
+                    <input disabled="" class="form-control" type="text" th:field="*{formaAdquisicion}"/>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="fechaIngreso" class="col-lg-2 control-label">Fecha Ingreso</label>
                   <div class="col-lg-10">
-                    <input class="form-control" id="fechaIngreso" placeholder="dd/mm/aaaa" type="text" th:field="*{fechaIngreso}"/>
+                    <input disabled="" class="form-control" type="text" th:field="*{fechaIngreso}"/>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="fechaCatalogo" class="col-lg-2 control-label">Fecha Catálogo</label>
                   <div class="col-lg-10">
-                    <input class="form-control" id="fechaCatalogo" placeholder="dd/mm/aaaa" type="text" th:field="*{fechaCatalogo}"/>
+                    <input disabled="" class="form-control" type="text" th:field="*{fechaCatalogo}"/>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="numRegistro" class="col-lg-2 control-label">No. Registro</label>
                   <div class="col-lg-10">
-                    <input class="form-control" id="numRegistro" placeholder="" type="text" th:field="*{numRegistro}"/>
+                    <input disabled="" class="form-control" type="text" th:field="*{numRegistro}"/>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="fuente" class="col-lg-2 control-label">Fuente</label>
                   <div class="col-lg-10">
-                    <input class="form-control" id="fuente" placeholder="" type="text" th:field="*{nombreFuente}"/>
+                    <input disabled="" class="form-control" type="text" th:field="*{nombreFuente}"/>
                   </div>
                 </div>
 
@@ -113,35 +114,35 @@
                 <div class="form-group">
                   <label for="valorEconomico" class="col-lg-2 control-label">Valor Económico</label>
                   <div class="col-lg-10">
-                    <input class="form-control" id="valorEconomico" placeholder="" type="text" th:field="*{valorEconomico}"/>
+                    <input disabled="" class="form-control" type="text" th:field="*{valorEconomico}"/>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="fechaInventario" class="col-lg-2 control-label">Fecha Inventario</label>
                   <div class="col-lg-10">
-                    <input class="form-control" id="fechaInventario" placeholder="dd/mm/aaaa" type="text" th:field="*{fechaInventario}"/>
+                    <input disabled="" class="form-control" type="text" th:field="*{fechaInventario}"/>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="numCatalogo" class="col-lg-2 control-label">No. Catalogo</label>
                   <div class="col-lg-10">
-                    <input class="form-control" id="numCatalogo" placeholder="" type="text" th:field="*{numCatalogo}"/>
+                    <input disabled="" class="form-control" type="text" th:field="*{numCatalogo}"/>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="numInventario" class="col-lg-2 control-label">No. Inventario</label>
                   <div class="col-lg-10">
-                    <input class="form-control"  id="numInventario" placeholder="" type="text" th:field="*{numInventario}"/>
+                    <input disabled="" class="form-control" type="text" th:field="*{numInventario}"/>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="dirFuente" class="col-lg-2 control-label">Dir. Fuente</label>
                   <div class="col-lg-10">
-                    <input class="form-control" id="dirFuente" placeholder="" type="text" th:field="*{direccionFuente}"/>
+                    <inpup disabled="" class="form-control" type="text" th:field="*{direccionFuente}"/>
                   </div>
                 </div>
 
@@ -158,42 +159,42 @@
                 <div class="form-group">
                   <label for="alto" class="col-lg-2 control-label">Alto</label>
                   <div class="col-lg-10">
-                    <input class="form-control" id="alto" placeholder="" type="text" th:field="*{alto}"/>
+                    <input disabled="" class="form-control" type="text" th:field="*{alto}"/>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="largo" class="col-lg-2 control-label">Largo</label>
                   <div class="col-lg-10">
-                    <input class="form-control" id="largo" placeholder="" type="text" th:field="*{largo}"/>
+                    <input disabled="" class="form-control" type="text" th:field="*{largo}"/>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="espesor" class="col-lg-2 control-label">Espesor</label>
                   <div class="col-lg-10">
-                    <input class="form-control" id="espesor" placeholder="" type="text" th:field="*{espesor}"/>
+                    <input disabled="" class="form-control" type="text" th:field="*{espesor}" />
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="procedencia" class="col-lg-3 control-label">Procedencia</label>
                   <div class="col-lg-10">
-                    <textarea class="form-control" rows="4" id="procedencia" th:field="*{procedencia}"></textarea>
+                    <textarea class="form-control" rows="4" disabled="disabled" th:value="*{procedencia}" ></textarea>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="autor" class="col-lg-2 control-label">Autor</label>
                   <div class="col-lg-10">
-                    <input class="form-control" id="autor" placeholder="" type="text" th:field="*{autor}"/>
+                    <input disabled="" class="form-control" type="text" th:field="*{autor}"/>
                   </div>
                 </div>
 
                 <div class="form-group">
                     <label for="numNegativo" class="col-lg-2 control-label">No. Negativo</label>
                     <div class="col-lg-10">
-                        <input class="form-control" id="numNegativo" placeholder="" type="text" th:field="*{numeroNegativo}"/>
+                        <input disabled="" class="form-control" type="text" th:field="*{numeroNegativo}"/>
                     </div>
                 </div>
 
@@ -204,35 +205,35 @@
                 <div class="form-group">
                   <label for="ancho" class="col-lg-2 control-label">Ancho</label>
                   <div class="col-lg-10">
-                    <input class="form-control" id="ancho" placeholder="" type="text" th:field="*{ancho}"/>
+                    <input disabled="" class="form-control" type="text" th:field="*{ancho}"/>
                   </div>
                 </div>
 
                   <div class="form-group">
                     <label for="diametro" class="col-lg-2 control-label">Diámetro</label>
                     <div class="col-lg-10">
-                      <input class="form-control" id="diametro" placeholder="" type="text" th:field="*{diametro}"/>
+                      <input disabled="" class="form-control"  type="text" th:field="*{diametro}"/>
                     </div>
                   </div>
 
                   <div class="form-group">
                     <label for="peso" class="col-lg-2 control-label">Peso</label>
                     <div class="col-lg-10">
-                      <input class="form-control" id="peso" placeholder="" type="text" th:field="*{peso}"/>
+                      <input disabled="" class="form-control" id="peso" type="text" th:field="*{peso}"/>
                     </div>
                   </div>
 
 									<div class="form-group">
 	                  <label for="materiaTecnica" class="col-lg-3 control-label">Materia y Técnica</label>
 	                  <div class="col-lg-10">
-	                    <textarea class="form-control" rows="3" id="materiaTecnica" th:field="*{materiaYTecnica}"></textarea>
+	                    <textarea class="form-control" rows="4" id="materiaTecnica" disabled="disabled" th:field="*{materiaYTecnica}"></textarea>
 	                  </div>
 	                </div>
 
 									<div class="form-group">
                     <label for="epoca" class="col-lg-2 control-label">Epoca</label>
                     <div class="col-lg-10">
-                      <input class="form-control" id="epoca" placeholder="" type="text" th:field="*{epoca}"/>
+                      <input disabled="" class="form-control" id="epoca" type="text" th:field="*{epoca}"/>
                     </div>
                   </div>
 
@@ -244,7 +245,7 @@
 						<h2>Descripción</h2>
 						<fieldset>
 							<div class="col-lg-10">
-								<textarea class="form-control" rows="4" id="descripcion" th:field="*{descripcion}"></textarea>
+								<textarea class="form-control" rows="4" disabled="disabled" th:field="*{descripcion}"></textarea>
 							</div>
 						</fieldset>
 
@@ -252,7 +253,7 @@
 						<h2>Documentación</h2>
 						<fieldset>
 							<div class="col-lg-10">
-								<textarea class="form-control" rows="4" id="documentacion" th:field="*{documentacion}"></textarea>
+								<textarea class="form-control" rows="4" disabled="disabled" th:field="*{documentacion}"></textarea>
 							</div>
 						</fieldset>
 
@@ -260,7 +261,7 @@
 						<h2>Observaciones</h2>
 						<fieldset>
 							<div class="col-lg-10">
-								<textarea class="form-control" rows="4" id="observaciones" th:field="*{observaciones}"></textarea>
+								<textarea class="form-control" rows="4" disabled="disabled" th:field="*{observaciones}"></textarea>
 							</div>
 						</fieldset>
 
@@ -271,14 +272,14 @@
 								<div class="form-group">
 									<label for="recibio" class="col-lg-3 control-label">Recibió</label>
 									<div class="col-lg-10">
-										<input class="form-control" id="recibio" placeholder="" type="text" th:field="*{recibio}"/>
+										<input class="form-control" id="recibio" disabled="" type="text" th:field="*{recibio}"/>
 									</div>
 								</div>
 
 								<div class="form-group">
 									<label for="quienCatalogo" class="col-lg-3 control-label">Catalogó</label>
 									<div class="col-lg-10">
-										<input class="form-control" id="quienCatalogo" placeholder="" type="text" th:field="*{catalogo}"/>
+										<input class="form-control" id="quienCatalogo" disabled="" placeholder="" type="text" th:field="*{catalogo}"/>
 									</div>
 								</div>
 
@@ -289,14 +290,14 @@
 								<div class="form-group">
 									<label for="quienInventario" class="col-lg-3 control-label">Inventarió</label>
 									<div class="col-lg-10">
-										<input class="form-control" id="quienInventario" placeholder="" type="text" th:field="*{inventario}"/>
+										<input class="form-control" id="quienInventario" disabled="" placeholder="" type="text" th:field="*{inventario}"/>
 									</div>
 								</div>
 
 								<div class="form-group">
 									<label for="quienAprobo" class="col-lg-3 control-label">Aprobó</label>
 									<div class="col-lg-10">
-										<input class="form-control" id="quienAprobo" placeholder="" type="text" th:field="*{aprobo}"/>
+										<input class="form-control" id="quienAprobo" disabled="" placeholder="" type="text" th:field="*{aprobo}"/>
 									</div>
 								</div>
 							</div>
@@ -304,9 +305,8 @@
 							<div class="form-group">
 					      <div class="col-lg-10 col-lg-offset-2">
 					        <button type="reset" class="btn btn-default" onclick="window.location='pagPrincipal'">Cancelar</button>
-                        
-                                                <button type="submit" name="action" value="editar" class="btn btn-primary">Editar</button>
-                                                <button type="submit"  name="action" value="eliminar" class="btn btn-danger" style="float: right;" >Eliminar</button>
+                    <button type="submit" name="action" value="editar" class="btn btn-primary">Editar</button>
+                    <button type="submit"  name="action" value="eliminar" class="btn btn-danger" style="float: right;" >Eliminar</button>
 					      </div>
 					    </div>
 

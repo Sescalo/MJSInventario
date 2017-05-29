@@ -1,25 +1,27 @@
-# Bitácora Oscar Gonzalez
+# Bitï¿½cora Oscar Gonzalez
 
 | Fecha    | Actividad realizada|
 | -------- | -------------------- |
-| 07/03/17 | Se trabajó en el Project Charter, se definió el alcance y el cronograma a utilizar para el proyecto. |
-| 09/03/17 | Se trabajó en el documento de visión, el cual se definieron a muy alto nivel los objetivos del proyecto. |
-| 10/03/17 | Se finalizó con el trabajo del documento de visión. |
-| 11/03/17 | Se realizó la definición de los casos de uso. |
-| 12/03/17 | Se pulieron ideas sobre los casos de uso y se detalló a fondo el documento. |
-| 15/03/17 - 17/03/17| Se trabajó en el desarrollo del prototipo mediante la herramienta Moqups. |
-| 23/03/17 | Se inició el desarrollo del documento ERS, en el cual se delimitó el alcance de la primer iteración y se desarrollaron algunos puntos. |
-| 25/03/17 | Se continuó y finalizó con el ERS de la primer iteración. |
-| 26/03/17 | Se realizó el documento de los casos de prueba, en los cuales se definió el lineamiento para el reporte de pruebas y el diseño de las mismas. |
-| 28/03/17 | Se inició con el SAD, en el cual se definió el alcance y se empezó a desarrollar la vista de casos de uso. |
-| 01/04/17 | Se continuó con el trabajo del SAD, se desarrolló el punto de la Vista Lógica, el cual tomó bastante tiempo. |
-| 02/04/17 | Se continuó con el trabajo del SAD, se finalizaron los puntos faltantes y se completó el documento. |
-| 04/04/17 | Se inició el desarrollo de la 1er iteración, para el cual se definió el uso de Spring como framework y se buscaron diseños en bootstrap para el futuro sistema. |
-| 06/04/17 | Se continuo con el desarrollo de la iteración, se decidió utilizar un proyecto Maven para manejar dependencias y también utilizar un MVC. Se desarrollaron las clases del paquete de Lógica. |
-| 07/04/17 | Se continuó con el trabajo de la iteración, se creó la base de datos necesaria para los usuarios, y se realizó el SABD necesario para conectar esta base con el sistema. Además, se desarrolló el controlador para manejar las solicitudes del browser. |
-| 08/04/17 | Se continuó con el trabajo de la iteración, en la cual se empezaron a desarrollar los HTML necesarios para el proyecto y por ende, la forma de conectar estos con el controlador en la lógica. |
+| 07/03/17 | Se trabajï¿½ en el Project Charter, se definiï¿½ el alcance y el cronograma a utilizar para el proyecto. |
+| 09/03/17 | Se trabajï¿½ en el documento de visiï¿½n, el cual se definieron a muy alto nivel los objetivos del proyecto. |
+| 10/03/17 | Se finalizï¿½ con el trabajo del documento de visiï¿½n. |
+| 11/03/17 | Se realizï¿½ la definiciï¿½n de los casos de uso. |
+| 12/03/17 | Se pulieron ideas sobre los casos de uso y se detallï¿½ a fondo el documento. |
+| 15/03/17 - 17/03/17| Se trabajï¿½ en el desarrollo del prototipo mediante la herramienta Moqups. |
+| 23/03/17 | Se iniciï¿½ el desarrollo del documento ERS, en el cual se delimitï¿½ el alcance de la primer iteraciï¿½n y se desarrollaron algunos puntos. |
+| 25/03/17 | Se continuï¿½ y finalizï¿½ con el ERS de la primer iteraciï¿½n. |
+| 26/03/17 | Se realizï¿½ el documento de los casos de prueba, en los cuales se definiï¿½ el lineamiento para el reporte de pruebas y el diseÃ±o de las mismas. |
+| 28/03/17 | Se iniciï¿½ con el SAD, en el cual se definiï¿½ el alcance y se empezï¿½ a desarrollar la vista de casos de uso. |
+| 01/04/17 | Se continuï¿½ con el trabajo del SAD, se desarrollï¿½ el punto de la Vista Lï¿½gica, el cual tomï¿½ bastante tiempo. |
+| 02/04/17 | Se continuï¿½ con el trabajo del SAD, se finalizaron los puntos faltantes y se completï¿½ el documento. |
+| 04/04/17 | Se iniciï¿½ el desarrollo de la 1er iteraciï¿½n, para el cual se definiï¿½ el uso de Spring como framework y se buscaron diseï¿½os en bootstrap para el futuro sistema. |
+| 06/04/17 | Se continuo con el desarrollo de la iteraciï¿½n, se decidiï¿½ utilizar un proyecto Maven para manejar dependencias y tambiï¿½n utilizar un MVC. Se desarrollaron las clases del paquete de Lï¿½gica. |
+| 07/04/17 | Se continuï¿½ con el trabajo de la iteraciï¿½n, se creï¿½ la base de datos necesaria para los usuarios, y se realizï¿½ el SABD necesario para conectar esta base con el sistema. Ademï¿½s, se desarrollï¿½ el controlador para manejar las solicitudes del browser. |
+| 08/04/17 | Se continuï¿½ con el trabajo de la iteraciï¿½n, en la cual se empezaron a desarrollar los HTML necesarios para el proyecto y por ende, la forma de conectar estos con el controlador en la lï¿½gica. |
 | 15/04/17| Se dividieron los casos de usos para la elaboracion individual de la segunda iteracion (la cual es individual), los cuales me correspondieron: agregar, eliminar y descargar objetos del inventario|
 | 15/04/17| Se comienza a redactar el ERS correspondiente a la segunda Iteracion. |
 | 16/04/17| Se comienza el plan de pruebas del ERS2. |
-| 16/04/17| Se finalizan el ERS y Plan de pruebas de la segunda iteración. |
-| 21/04/17| Corrigió atributos del usuario 'isAdmin'. |
+| 16/04/17| Se finalizan el ERS y Plan de pruebas de la segunda iteraciï¿½n. |
+| 21/04/17| Corrigiï¿½ atributos del usuario 'isAdmin'. |
+| 20/05/17| ElaboraciÃ³ documento SAD correspondiente a la iteracion 3. |
+| 29/05/17| Investigando sobre Spring por problema de actualizaciÃ³n de paginas al ingresar objetos a la base de datos. |
