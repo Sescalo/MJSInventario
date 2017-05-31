@@ -16,7 +16,7 @@ public class Objeto {
     private String formaAdquisicion;
     private String fechaIngreso;
     private String numRegistro;
-    private float valorEconomico;
+    private String valorEconomico;
     private String nombreFuente;
     private String fechaInventario;
     private String numInventario;
@@ -25,16 +25,16 @@ public class Objeto {
     private String fechaCatalogo;
     private String numCatalogo;
     private String espesor;
-    private float alto;
-    private float ancho;
-    private float largo;
-    private float diametro;
-    private float peso;
-        private String procedencia;
+    private String alto;
+    private String ancho;
+    private String largo;
+    private String diametro;
+    private String peso;
+    private String procedencia;
     private String materiaYTecnica;
     private String numeroNegativo;
     private String autor;
-    private int epoca;
+    private String epoca;
     private String descripcion;
     private String documentacion;
     private String observaciones;
@@ -43,7 +43,7 @@ public class Objeto {
     private String catalogo;
     private String aprobo;
 
-    public Objeto(int idObjeto, String nombreObjeto, String formaAdquisicion, String fechaIngreso, String numRegistro, float valorEconomico, String nombreFuente, String fechaInventario, String numInventario, String otrosNumeros, String direccionFuente, String fechaCatalogo, String numCatalogo, String espesor, float alto, float ancho, float largo, float diametro, float peso, String procedencia, String materiaYTecnica, String numeroNegativo, String autor, int epoca, String descripcion, String documentacion, String observaciones, String recibio, String inventario, String catalogo, String aprobo) {
+    public Objeto(int idObjeto, String nombreObjeto, String formaAdquisicion, String fechaIngreso, String numRegistro, String valorEconomico, String nombreFuente, String fechaInventario, String numInventario, String otrosNumeros, String direccionFuente, String fechaCatalogo, String numCatalogo, String espesor, String alto, String ancho, String largo, String diametro, String peso, String procedencia, String materiaYTecnica, String numeroNegativo, String autor, String epoca, String descripcion, String documentacion, String observaciones, String recibio, String inventario, String catalogo, String aprobo) {
         this.idObjeto = idObjeto;
         this.nombreObjeto = nombreObjeto;
         this.formaAdquisicion = formaAdquisicion;
@@ -119,11 +119,11 @@ public class Objeto {
         this.numRegistro = numRegistro;
     }
 
-    public float getValorEconomico() {
+    public String getValorEconomico() {
         return valorEconomico;
     }
 
-    public void setValorEconomico(float valorEconomico) {
+    public void setValorEconomico(String valorEconomico) {
         this.valorEconomico = valorEconomico;
     }
 
@@ -191,43 +191,43 @@ public class Objeto {
         this.espesor = espesor;
     }
 
-    public float getAlto() {
+    public String getAlto() {
         return alto;
     }
 
-    public void setAlto(float alto) {
+    public void setAlto(String alto) {
         this.alto = alto;
     }
 
-    public float getAncho() {
+    public String getAncho() {
         return ancho;
     }
 
-    public void setAncho(float ancho) {
+    public void setAncho(String ancho) {
         this.ancho = ancho;
     }
 
-    public float getLargo() {
+    public String getLargo() {
         return largo;
     }
 
-    public void setLargo(float largo) {
+    public void setLargo(String largo) {
         this.largo = largo;
     }
 
-    public float getDiametro() {
+    public String getDiametro() {
         return diametro;
     }
 
-    public void setDiametro(float diametro) {
+    public void setDiametro(String diametro) {
         this.diametro = diametro;
     }
 
-    public float getPeso() {
+    public String getPeso() {
         return peso;
     }
 
-    public void setPeso(float peso) {
+    public void setPeso(String peso) {
         this.peso = peso;
     }
 
@@ -263,11 +263,11 @@ public class Objeto {
         this.autor = autor;
     }
 
-    public int getEpoca() {
+    public String getEpoca() {
         return epoca;
     }
 
-    public void setEpoca(int epoca) {
+    public void setEpoca(String epoca) {
         this.epoca = epoca;
     }
 

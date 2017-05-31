@@ -160,7 +160,7 @@ public class AdminBaseDatos {
             prepStmt.setString(2, objeto.getFormaAdquisicion());
             prepStmt.setString(3, objeto.getFechaIngreso());
             prepStmt.setString(4, objeto.getNumRegistro());
-            prepStmt.setFloat(5, objeto.getValorEconomico());
+            prepStmt.setString(5, objeto.getValorEconomico());
             prepStmt.setString(6, objeto.getNombreFuente());
             prepStmt.setString(7, objeto.getFechaInventario());
             prepStmt.setString(8, objeto.getNumInventario());
@@ -169,16 +169,16 @@ public class AdminBaseDatos {
             prepStmt.setString(11, objeto.getFechaCatalogo());
             prepStmt.setString(12, objeto.getNumCatalogo());
             prepStmt.setString(13, objeto.getEspesor());
-            prepStmt.setFloat(14, objeto.getAlto());
-            prepStmt.setFloat(15, objeto.getAncho());
-            prepStmt.setFloat(16, objeto.getLargo());
-            prepStmt.setFloat(17, objeto.getDiametro());
-            prepStmt.setFloat(18, objeto.getPeso());
+            prepStmt.setString(14, objeto.getAlto());
+            prepStmt.setString(15, objeto.getAncho());
+            prepStmt.setString(16, objeto.getLargo());
+            prepStmt.setString(17, objeto.getDiametro());
+            prepStmt.setString(18, objeto.getPeso());
             prepStmt.setString(19, objeto.getProcedencia());
             prepStmt.setString(20, objeto.getMateriaYTecnica());
             prepStmt.setString(21, objeto.getNumeroNegativo());
             prepStmt.setString(22, objeto.getAutor());
-            prepStmt.setInt(23, objeto.getEpoca());
+            prepStmt.setString(23, objeto.getEpoca());
             prepStmt.setString(24, objeto.getDescripcion());
             prepStmt.setString(25, objeto.getDocumentacion());
             prepStmt.setString(26, objeto.getObservaciones());
@@ -218,7 +218,7 @@ public class AdminBaseDatos {
             prepStmt.setString(2, objeto.getFormaAdquisicion());
             prepStmt.setString(3, objeto.getFechaIngreso());
             prepStmt.setString(4, objeto.getNumRegistro());
-            prepStmt.setFloat(5, objeto.getValorEconomico());
+            prepStmt.setString(5, objeto.getValorEconomico());
             prepStmt.setString(6, objeto.getNombreFuente());
             prepStmt.setString(7, objeto.getFechaInventario());
             prepStmt.setString(8, objeto.getNumInventario());
@@ -227,16 +227,16 @@ public class AdminBaseDatos {
             prepStmt.setString(11, objeto.getFechaCatalogo());
             prepStmt.setString(12, objeto.getNumCatalogo());
             prepStmt.setString(13, objeto.getEspesor());
-            prepStmt.setFloat(14, objeto.getAlto());
-            prepStmt.setFloat(15, objeto.getAncho());
-            prepStmt.setFloat(16, objeto.getLargo());
-            prepStmt.setFloat(17, objeto.getDiametro());
-            prepStmt.setFloat(18, objeto.getPeso());
+            prepStmt.setString(14, objeto.getAlto());
+            prepStmt.setString(15, objeto.getAncho());
+            prepStmt.setString(16, objeto.getLargo());
+            prepStmt.setString(17, objeto.getDiametro());
+            prepStmt.setString(18, objeto.getPeso());
             prepStmt.setString(19, objeto.getProcedencia());
             prepStmt.setString(20, objeto.getMateriaYTecnica());
             prepStmt.setString(21, objeto.getNumeroNegativo());
             prepStmt.setString(22, objeto.getAutor());
-            prepStmt.setInt(23, objeto.getEpoca());
+            prepStmt.setString(23, objeto.getEpoca());
             prepStmt.setString(24, objeto.getDescripcion());
             prepStmt.setString(25, objeto.getDocumentacion());
             prepStmt.setString(26, objeto.getObservaciones());
@@ -274,12 +274,12 @@ public class AdminBaseDatos {
             while(resultado.next()){
                 listaObjetos.add( new Objeto(resultado.getInt("idObjeto"), resultado.getString("nombreObjeto")
                 , resultado.getString("formaAdquisicion"), resultado.getString("fechaIngreso"), resultado.getString("numRegistro")
-                , resultado.getFloat("valorEconomico"), resultado.getString("nombreFuente"), resultado.getString("fechaInventario")
+                , resultado.getString("valorEconomico"), resultado.getString("nombreFuente"), resultado.getString("fechaInventario")
                 , resultado.getString("numInventario"), resultado.getString("otrosNumeros"), resultado.getString("direccionFuente")
                 , resultado.getString("fechaCatalogo"), resultado.getString("numCatalogo"), resultado.getString("espesor")
-                , resultado.getFloat("alto"), resultado.getFloat("ancho"), resultado.getFloat("largo"), resultado.getFloat("diametro")
-                , resultado.getFloat("peso"), resultado.getString("procedencia"), resultado.getString("materiaYTecnica")
-                , resultado.getString("numeroNegativo"), resultado.getString("autor"), resultado.getInt("epoca")
+                , resultado.getString("alto"), resultado.getString("ancho"), resultado.getString("largo"), resultado.getString("diametro")
+                , resultado.getString("peso"), resultado.getString("procedencia"), resultado.getString("materiaYTecnica")
+                , resultado.getString("numeroNegativo"), resultado.getString("autor"), resultado.getString("epoca")
                 , resultado.getString("descripcion"), resultado.getString("documentacion"), resultado.getString("observaciones"), resultado.getString("recibio")
                 , resultado.getString("inventario"), resultado.getString("catalogo"), resultado.getString("aprobo")));
             }

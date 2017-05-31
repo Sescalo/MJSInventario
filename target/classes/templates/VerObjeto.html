@@ -39,7 +39,7 @@
 
 
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="#">Salir</a></li>
+              <li><a href="InicioSesion">Salir</a></li>
             </ul>
 
           </div>
@@ -110,7 +110,11 @@
               </div>
 
               <div id="right">
-
+                
+                
+                <a th:onclick="'javascript:rowClicked(__${indice}__);'" class="btn btn-success">Success</a>
+                  
+                
                 <div class="form-group">
                   <label for="valorEconomico" class="col-lg-2 control-label">Valor Económico</label>
                   <div class="col-lg-10">
@@ -324,5 +328,15 @@
 
 
   </body>
+  <script>
+    
+  //    funcion cuando se clickea el boton descargar
+      function rowClicked(value) {
+          console.log(value);   
+
+          window.location="descarga?ind=" + value; //Referencia (href)
+      }
+
+  </script>
 
 </html>

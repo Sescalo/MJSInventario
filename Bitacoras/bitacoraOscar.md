@@ -25,3 +25,7 @@
 | 21/04/17| Corrigi� atributos del usuario 'isAdmin'. |
 | 20/05/17| Elaboració documento SAD correspondiente a la iteracion 3. |
 | 29/05/17| Investigando sobre Spring por problema de actualización de paginas al ingresar objetos a la base de datos. |
+| 29/05/17| Actualizacion de paginas corregido. |
+| 30/05/17| Inicio proceso de crear archivo "excel" con info de un objeto para descarga, despues hay que convertirlo a PDF. |
+| 30/05/17| Se encontro una herramienta muy simple sobre tranformar una spreadsheet a formato pdf, pero la herramiente es privativa, por lo que el pdf generado contiene mensaje de evaluacion. |
+| 30/05/17| Se logra descarga el archivo (xls hasta el momento) desde la aplicacon. |
