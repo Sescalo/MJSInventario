@@ -12,6 +12,15 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.sun.star.beans.PropertyValue;
+import com.sun.star.comp.helper.Bootstrap;
+import com.sun.star.frame.XComponentLoader;
+import com.sun.star.frame.XDesktop;
+import com.sun.star.frame.XStorable;
+import com.sun.star.lang.XComponent;
+import com.sun.star.lang.XMultiComponentFactory;
+import com.sun.star.uno.UnoRuntime;
+import com.sun.star.uno.XComponentContext;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -217,49 +226,103 @@ public class EscribirExcel {
 //        //Save the document in PDF format
 //        workbook.save("MyPdfFile.pdf", SaveFormat.PDF);
 
-        FileInputStream input_document = new FileInputStream(new File("DatosObjeto.xls"));
-            // Read workbook into HSSFWorkbook
-            HSSFWorkbook my_xls_workbook = new HSSFWorkbook(input_document); 
-            // Read worksheet into HSSFSheet
-            HSSFSheet my_worksheet = my_xls_workbook.getSheetAt(0); 
-            // To iterate over the rows
-            Iterator<Row> rowIterator = my_worksheet.iterator();
-            //We will create output PDF document objects at this point
-            Document iText_xls_2_pdf = new Document();
-            
-            PdfWriter.getInstance(iText_xls_2_pdf, new FileOutputStream("Excel2PDF_Output.pdf"));
-            iText_xls_2_pdf.open();
-            //we have two columns in the Excel sheet, so we create a PDF table with two columns
-            //Note: There are ways to make this dynamic in nature, if you want to.
-            PdfPTable my_table = new PdfPTable(2);
-            //We will use the object below to dynamically add new data to the table
-            PdfPCell table_cell;
-            //Loop through rows.
-            while(rowIterator.hasNext()) {
-                Row row = rowIterator.next(); 
-                Iterator<Cell> cellIterator = row.cellIterator();
-                while(cellIterator.hasNext()) {
-                    Cell cell = cellIterator.next(); //Fetch CELL
-                    switch(cell.getCellType()) { //Identify CELL type
-                            //you need to add more code here based on
-                            //your requirement / transformations
-                    case Cell.CELL_TYPE_STRING:
-                            //Push the data from Excel to PDF Cell
-                             table_cell=new PdfPCell(new Phrase(cell.getStringCellValue()));
-                             //feel free to move the code below to suit to your needs
-                             my_table.addCell(table_cell);
-                            break;
-                    }
-                        //next line
-                }
+//=========Apache Poi
+//        FileInputStream input_document = new FileInputStream(new File("DatosObjeto.xls"));
+//            // Read workbook into HSSFWorkbook
+//            HSSFWorkbook my_xls_workbook = new HSSFWorkbook(input_document); 
+//            // Read worksheet into HSSFSheet
+//            HSSFSheet my_worksheet = my_xls_workbook.getSheetAt(0); 
+//            // To iterate over the rows
+//            Iterator<Row> rowIterator = my_worksheet.iterator();
+//            //We will create output PDF document objects at this point
+//            Document iText_xls_2_pdf = new Document();
+//            
+//            PdfWriter.getInstance(iText_xls_2_pdf, new FileOutputStream("Excel2PDF_Output.pdf"));
+//            iText_xls_2_pdf.open();
+//            //we have two columns in the Excel sheet, so we create a PDF table with two columns
+//            //Note: There are ways to make this dynamic in nature, if you want to.
+//            PdfPTable my_table = new PdfPTable(2);
+//            //We will use the object below to dynamically add new data to the table
+//            PdfPCell table_cell;
+//            //Loop through rows.
+//            while(rowIterator.hasNext()) {
+//                Row row = rowIterator.next(); 
+//                Iterator<Cell> cellIterator = row.cellIterator();
+//                while(cellIterator.hasNext()) {
+//                    Cell cell = cellIterator.next(); //Fetch CELL
+//                    switch(cell.getCellType()) { //Identify CELL type
+//                            //you need to add more code here based on
+//                            //your requirement / transformations
+//                    case Cell.CELL_TYPE_STRING:
+//                            //Push the data from Excel to PDF Cell
+//                             table_cell=new PdfPCell(new Phrase(cell.getStringCellValue()));
+//                             //feel free to move the code below to suit to your needs
+//                             my_table.addCell(table_cell);
+//                            break;
+//                    }
+//                        //next line
+//                }
+//
+//            }
+//            //Finally add the table to PDF document
+//            iText_xls_2_pdf.add(my_table);                       
+//            iText_xls_2_pdf.close();                
+//            //we created our pdf file..
+//            input_document.close(); //close xls
+    
+        //===OpenOffice Api
+        XComponentContext xContext = Bootstrap.bootstrap();
 
-            }
-            //Finally add the table to PDF document
-            iText_xls_2_pdf.add(my_table);                       
-            iText_xls_2_pdf.close();                
-            //we created our pdf file..
-            input_document.close(); //close xls
+        XMultiComponentFactory xMCF = xContext.getServiceManager();
+
+        Object oDesktop = xMCF.createInstanceWithContext("com.sun.star.frame.Desktop", xContext);
+
+        XDesktop xDesktop = (XDesktop) UnoRuntime.queryInterface(
+        XDesktop.class, oDesktop);
+
+        // Load the Document
+        String workingDir = "C:/projects/";
+        String myTemplate = "HojaInv.xls";
+
+        if (!new File(workingDir + myTemplate).canRead()) {
+         throw new RuntimeException("Cannot load template:" + new File(/*workingDir + */myTemplate));
+        }
+
+        XComponentLoader xCompLoader = (XComponentLoader) UnoRuntime
+         .queryInterface(com.sun.star.frame.XComponentLoader.class, xDesktop);
+
+        String sUrl = /*"file:///" + workingDir +*/ myTemplate;
+
+        PropertyValue[] propertyValues = new PropertyValue[0];
+
+        propertyValues = new PropertyValue[1];
+        propertyValues[0] = new PropertyValue();
+        propertyValues[0].Name = "Hidden";
+        propertyValues[0].Value = new Boolean(true);
+
+        XComponent xComp = xCompLoader.loadComponentFromURL(sUrl, "_blank", 0, propertyValues);
+
+        // save as a PDF
+        XStorable xStorable = (XStorable) UnoRuntime.queryInterface(XStorable.class, xComp);
+
+        propertyValues = new PropertyValue[2];
+        propertyValues[0] = new PropertyValue();
+        propertyValues[0].Name = "Overwrite";
+        propertyValues[0].Value = new Boolean(true);
+        propertyValues[1] = new PropertyValue();
+        propertyValues[1].Name = "FilterName";
+        propertyValues[1].Value = "writer_pdf_Export";
+
+        // Appending the favoured extension to the origin document name
+        String myResult = /*workingDir + */"letter1.pdf";
+
+        xStorable.storeToURL(/*"file:///" + */myResult, propertyValues);
+
+        System.out.println("Saved " + myResult);
+
+        xDesktop.terminate();
     }
+
 
 
 }

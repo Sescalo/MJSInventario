@@ -1,8 +1,7 @@
 Controlador/MJSInventarioControlador.class
 Modelo/Objeto.class
-Modelo/DatosUsuario.class
 Modelo/Usuario.class
+Modelo/DatosUsuario.class
 BaseDatos/AdminBaseDatos.class
 Controlador/Application.class
 Modelo/EscribirExcel.class
-.netbeans_automatic_build
