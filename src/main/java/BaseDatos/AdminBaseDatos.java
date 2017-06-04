@@ -311,4 +311,47 @@ public class AdminBaseDatos {
         }
     }
     
+    //    Agregar un movimiento al historial
+    public void agregarMovimiento(String movimiento){
+        try{
+            prepStmt = conn.prepareStatement("insert into Historial (movimiento) VALUES (?);");
+
+            prepStmt.setString(1, movimiento);
+            
+            int res = prepStmt.executeUpdate();
+            if(res>0){
+                System.out.println("Movimiento guardado");
+            }
+            else{
+                System.out.println("Error al guardar el movimiento");
+            }
+//            conn.close();
+        }
+
+        catch(Exception e){
+            System.out.println("Error al guardar el movimiento");
+        }
+    }
+        
+            // Obtener los usuarios que hay en la base de datos
+    public ArrayList<String> listaHistorial() {
+        ArrayList<String> listaHistorial = new ArrayList<>();
+
+        try{
+            stmt = conn.createStatement();
+            resultado = stmt.executeQuery("SELECT * FROM Historial;");
+
+            while(resultado.next()){
+                listaHistorial.add(resultado.getString("movimiento")
+                );
+            }
+        }
+
+        catch(Exception e){
+
+        }
+        System.out.println("Historial extraido de la BD");
+        return listaHistorial;
+    }
+    
 }

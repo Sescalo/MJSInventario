@@ -19,6 +19,47 @@ CREATE SCHEMA IF NOT EXISTS `MJSIDataBase` DEFAULT CHARACTER SET utf8 ;
 USE `MJSIDataBase` ;
 
 -- -----------------------------------------------------
+-- Table `MJSIDataBase`.`Objeto`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `MJSIDataBase`.`Objeto` (
+  `idObjeto` INT(11) NOT NULL AUTO_INCREMENT,
+  `nombreObjeto` VARCHAR(45) NOT NULL,
+  `formaAdquisicion` VARCHAR(45) NULL DEFAULT NULL,
+  `fechaIngreso` VARCHAR(45) NULL DEFAULT NULL,
+  `numRegistro` VARCHAR(45) NULL DEFAULT NULL,
+  `valorEconomico` VARCHAR(45) NULL DEFAULT NULL,
+  `nombreFuente` VARCHAR(45) NULL DEFAULT NULL,
+  `fechaInventario` VARCHAR(45) NULL DEFAULT NULL,
+  `numInventario` VARCHAR(45) NULL DEFAULT NULL,
+  `otrosNumeros` VARCHAR(45) NULL DEFAULT NULL,
+  `direccionFuente` VARCHAR(45) NULL DEFAULT NULL,
+  `fechaCatalogo` VARCHAR(45) NULL DEFAULT NULL,
+  `numCatalogo` VARCHAR(45) NULL DEFAULT NULL,
+  `espesor` VARCHAR(45) NULL DEFAULT NULL,
+  `alto` VARCHAR(45) NULL DEFAULT NULL,
+  `ancho` VARCHAR(45) NULL DEFAULT NULL,
+  `largo` VARCHAR(45) NULL DEFAULT NULL,
+  `diametro` VARCHAR(45) NULL DEFAULT NULL,
+  `peso` VARCHAR(45) NULL DEFAULT NULL,
+  `procedencia` VARCHAR(45) NULL DEFAULT NULL,
+  `materiaYTecnica` VARCHAR(45) NULL DEFAULT NULL,
+  `numeroNegativo` VARCHAR(45) NULL DEFAULT NULL,
+  `autor` VARCHAR(45) NULL DEFAULT NULL,
+  `epoca` VARCHAR(45) NULL DEFAULT NULL,
+  `descripcion` VARCHAR(500) NULL DEFAULT NULL,
+  `documentacion` VARCHAR(500) NULL DEFAULT NULL,
+  `observaciones` VARCHAR(500) NULL DEFAULT NULL,
+  `recibio` VARCHAR(45) NULL DEFAULT NULL,
+  `inventario` VARCHAR(45) NULL DEFAULT NULL,
+  `catalogo` VARCHAR(45) NULL DEFAULT NULL,
+  `aprobo` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`idObjeto`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
 -- Table `MJSIDataBase`.`Usuario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `MJSIDataBase`.`Usuario` (
@@ -31,46 +72,17 @@ CREATE TABLE IF NOT EXISTS `MJSIDataBase`.`Usuario` (
   `isAdmin` TINYINT(1) NOT NULL,
   PRIMARY KEY (`idUsuario`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 10
+AUTO_INCREMENT = 11
 DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `MJSIDataBase`.`Objeto`
+-- Table `MJSIDataBase`.`Historial`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `MJSIDataBase`.`Objeto` (
-  `idObjeto` INT NOT NULL AUTO_INCREMENT,
-  `nombreObjeto` VARCHAR(45) NOT NULL,
-  `formaAdquisicion` VARCHAR(45) NULL,
-  `fechaIngreso` VARCHAR(45) NULL,
-  `numRegistro` VARCHAR(45) NULL,
-  `valorEconomico` VARCHAR(45) NULL,
-  `nombreFuente` VARCHAR(45) NULL,
-  `fechaInventario` VARCHAR(45) NULL,
-  `numInventario` VARCHAR(45) NULL,
-  `otrosNumeros` VARCHAR(45) NULL,
-  `direccionFuente` VARCHAR(45) NULL,
-  `fechaCatalogo` VARCHAR(45) NULL,
-  `numCatalogo` VARCHAR(45) NULL,
-  `espesor` VARCHAR(45) NULL,
-  `alto` VARCHAR(45) NULL,
-  `ancho` VARCHAR(45) NULL,
-  `largo` VARCHAR(45) NULL,
-  `diametro` VARCHAR(45) NULL,
-  `peso` VARCHAR(45) NULL,
-  `procedencia` VARCHAR(45) NULL,
-  `materiaYTecnica` VARCHAR(45) NULL,
-  `numeroNegativo` VARCHAR(45) NULL,
-  `autor` VARCHAR(45) NULL,
-  `epoca` VARCHAR(45) NULL,
-  `descripcion` VARCHAR(500) NULL,
-  `documentacion` VARCHAR(500) NULL,
-  `observaciones` VARCHAR(500) NULL,
-  `recibio` VARCHAR(45) NULL,
-  `inventario` VARCHAR(45) NULL,
-  `catalogo` VARCHAR(45) NULL,
-  `aprobo` VARCHAR(45) NULL,
-  PRIMARY KEY (`idObjeto`))
+CREATE TABLE IF NOT EXISTS `MJSIDataBase`.`Historial` (
+  `idHistorial` INT NOT NULL AUTO_INCREMENT,
+  `movimiento` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`idHistorial`))
 ENGINE = InnoDB;
 
 

@@ -1,17 +1,11 @@
 package Controlador;
 
 import BaseDatos.AdminBaseDatos;
-import Modelo.DatosUsuario;
 import Modelo.EscribirExcel;
 import Modelo.Objeto;
 import Modelo.Usuario;
-//import com.itextpdf.text.pdf.parser.Path;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -28,10 +22,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -41,6 +33,7 @@ public class MJSInventarioControlador {
     ArrayList <Usuario> usuarios;
     ArrayList <Objeto> objetos;
     EscribirExcel es;
+    ArrayList<String> historial;
     
 //  =========Atributos del modelo
     @ModelAttribute("usuarios")
@@ -53,9 +46,19 @@ public class MJSInventarioControlador {
         return this.objetos;
     }
     
+    @ModelAttribute("historial")
+    public ArrayList<String> historial() {
+        return this.historial;
+    }
+    
     //Actualizar objetos con la base de datos
     public void actualizarObjetos(){
         this.objetos = adminBD.listaObjetos();
+    }
+    
+    //Actualizar historial con la base de datos
+    public void actualizarHistorial(){
+        this.historial = adminBD.listaHistorial();
     }
     
 //    Consructor
@@ -63,6 +66,7 @@ public class MJSInventarioControlador {
         this.adminBD = new AdminBaseDatos();
         this.usuarios = adminBD.listaUsuarios();
         this.objetos = adminBD.listaObjetos();
+        this.historial = adminBD.listaHistorial();
         
         es = new EscribirExcel();
 //        es.crearPDF();
@@ -86,7 +90,7 @@ public class MJSInventarioControlador {
             usuario = new Usuario();
             return "InicioSesion";
         }
-        
+        adminBD.agregarMovimiento("Inicio de Sesión para "+usuario.getNombreUsuario());
         return getPagPrincipal(model);
     }
     
@@ -94,6 +98,7 @@ public class MJSInventarioControlador {
     @GetMapping("/pagPrincipal")
     public String getPagPrincipal(Model model) {
 
+        actualizarHistorial();
         System.out.println("Get paginaPrincipal");
         
         return "pagPrincipal";
@@ -113,9 +118,9 @@ public class MJSInventarioControlador {
 //        usuario.encriptarContra();
                 
         System.out.println(usuario.toString());
-        
         this.usuarios.add(usuario);
         adminBD.agregarUsuario(usuario);  //agrego a Base Datos
+        adminBD.agregarMovimiento("Se agregó el usuario "+usuario.getNombreUsuario());
         
         return "Usuarios";
     }
@@ -128,7 +133,15 @@ public class MJSInventarioControlador {
         this.usuarios = adminBD.listaUsuarios();
         
         return "Usuarios";
-    }       
+    }  
+    
+    //    Lista Historial
+    @GetMapping("/Historial")
+    public String getHistorial(Model model) {
+        System.out.println("GET Historial");
+        this.historial = adminBD.listaHistorial();
+        return "Historial";
+    }  
     
     
 //    Editar un Usuario
@@ -147,10 +160,11 @@ public class MJSInventarioControlador {
         System.out.println(usuario.toString());
         //Preguntar contrasena administrador
         adminBD.actualizarUsuario(usuario);
-        
+        adminBD.agregarMovimiento("Edición del usuario "+usuario.getNombreUsuario());
 
         if (action.equals("eliminar")){
             adminBD.eliminarUsuario(usuario);
+            adminBD.agregarMovimiento("Se eliminó el usuario "+usuario.getNombreUsuario());
         }
         
         
@@ -177,10 +191,10 @@ public class MJSInventarioControlador {
       System.out.println("Post Agregar Objeto");
       
         System.out.println(objeto.toString());
-        
         this.objetos.add(objeto);    
         adminBD.agregarObjeto(objeto); //agrego a base datos
         actualizarObjetos();
+        adminBD.agregarMovimiento("Se agregó el objeto "+objeto.getNombreObjeto());
         
         return "pagPrincipal";
     }
@@ -205,6 +219,7 @@ public class MJSInventarioControlador {
 
         if (action.equals("eliminar")){
             adminBD.eliminarObjeto(objeto);
+            adminBD.agregarMovimiento("Se eliminó el objeto "+objeto.getNombreObjeto());
         }
         
         
@@ -231,8 +246,8 @@ public class MJSInventarioControlador {
         
         System.out.println(objeto.toString());
         //Preguntar contrasena administrador
-      
         adminBD.actualizarObjeto(objeto);
+        adminBD.agregarMovimiento("Edición del objeto "+objeto.getNombreObjeto());
         
 //        actualizar usuarios      
 //        this.usuarios = adminBD.listaUsuarios();
@@ -259,6 +274,7 @@ public class MJSInventarioControlador {
             {
                 Files.copy(file, response.getOutputStream());
                 response.getOutputStream().flush();
+                adminBD.agregarMovimiento("Se descargó el objeto "+objetos.get(indiceObjeto).getNombreObjeto());
             } 
             catch (IOException ex) {
                 ex.printStackTrace();

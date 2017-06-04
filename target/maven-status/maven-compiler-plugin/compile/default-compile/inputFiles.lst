@@ -1,7 +1,7 @@
-/home/oskr/gitHub/MJSInventario/src/main/java/BaseDatos/AdminBaseDatos.java
-/home/oskr/gitHub/MJSInventario/src/main/java/Modelo/EscribirExcel.java
-/home/oskr/gitHub/MJSInventario/src/main/java/Modelo/Objeto.java
-/home/oskr/gitHub/MJSInventario/src/main/java/Controlador/MJSInventarioControlador.java
-/home/oskr/gitHub/MJSInventario/src/main/java/Controlador/Application.java
-/home/oskr/gitHub/MJSInventario/src/main/java/Modelo/DatosUsuario.java
-/home/oskr/gitHub/MJSInventario/src/main/java/Modelo/Usuario.java
+/home/sescalo/NetBeansProjects/MJSInventario/src/main/java/Controlador/MJSInventarioControlador.java
+/home/sescalo/NetBeansProjects/MJSInventario/src/main/java/Modelo/DatosUsuario.java
+/home/sescalo/NetBeansProjects/MJSInventario/src/main/java/Modelo/Objeto.java
+/home/sescalo/NetBeansProjects/MJSInventario/src/main/java/Modelo/Usuario.java
+/home/sescalo/NetBeansProjects/MJSInventario/src/main/java/BaseDatos/AdminBaseDatos.java
+/home/sescalo/NetBeansProjects/MJSInventario/src/main/java/Controlador/Application.java
+/home/sescalo/NetBeansProjects/MJSInventario/src/main/java/Modelo/EscribirExcel.java
