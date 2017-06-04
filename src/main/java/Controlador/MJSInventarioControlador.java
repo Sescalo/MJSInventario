@@ -69,7 +69,7 @@ public class MJSInventarioControlador {
         this.historial = adminBD.listaHistorial();
         
         es = new EscribirExcel();
-//        es.crearPDF();
+        es.crearPDF();
         
     }
     

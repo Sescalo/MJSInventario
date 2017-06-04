@@ -219,7 +219,7 @@ public class EscribirExcel {
 
 
     public void crearPDF() throws Exception{
-
+//==========Aspose
 //        //Instantiate a new workbook with Excel file path
 //        Workbook workbook = new Workbook("DatosObjeto.xlsx");
 //        
@@ -277,8 +277,7 @@ public class EscribirExcel {
 
         Object oDesktop = xMCF.createInstanceWithContext("com.sun.star.frame.Desktop", xContext);
 
-        XDesktop xDesktop = (XDesktop) UnoRuntime.queryInterface(
-        XDesktop.class, oDesktop);
+        XDesktop xDesktop = (XDesktop) UnoRuntime.queryInterface(XDesktop.class, oDesktop);
 
         // Load the Document
         String workingDir = "C:/projects/";
@@ -287,6 +286,7 @@ public class EscribirExcel {
         if (!new File(workingDir + myTemplate).canRead()) {
          throw new RuntimeException("Cannot load template:" + new File(/*workingDir + */myTemplate));
         }
+        System.out.println("eEAEAEAEAEE");
 
         XComponentLoader xCompLoader = (XComponentLoader) UnoRuntime
          .queryInterface(com.sun.star.frame.XComponentLoader.class, xDesktop);
