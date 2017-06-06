@@ -1,5 +1,6 @@
 package BaseDatos;
 
+import Modelo.Busqueda;
 import Modelo.Objeto;
 import Modelo.Usuario;
 
@@ -352,6 +353,35 @@ public class AdminBaseDatos {
         }
         System.out.println("Historial extraido de la BD");
         return listaHistorial;
+    }
+    
+    // Obtener una busqueda de la base de datos
+    public ArrayList<Objeto> busquedaObjetos(Busqueda busqueda) {
+        ArrayList<Objeto> busquedaObjetos = new ArrayList<>();
+
+        try{
+            stmt = conn.createStatement();
+            resultado = stmt.executeQuery("SELECT * FROM Objeto WHERE " + busqueda.getAb().toString() + " LIKE %" + busqueda.getInput() + "% ;");
+
+            while(resultado.next()){
+                busquedaObjetos.add( new Objeto(resultado.getInt("idObjeto"), resultado.getString("nombreObjeto")
+                , resultado.getString("formaAdquisicion"), resultado.getString("fechaIngreso"), resultado.getString("numRegistro")
+                , resultado.getString("valorEconomico"), resultado.getString("nombreFuente"), resultado.getString("fechaInventario")
+                , resultado.getString("numInventario"), resultado.getString("otrosNumeros"), resultado.getString("direccionFuente")
+                , resultado.getString("fechaCatalogo"), resultado.getString("numCatalogo"), resultado.getString("espesor")
+                , resultado.getString("alto"), resultado.getString("ancho"), resultado.getString("largo"), resultado.getString("diametro")
+                , resultado.getString("peso"), resultado.getString("procedencia"), resultado.getString("materiaYTecnica")
+                , resultado.getString("numeroNegativo"), resultado.getString("autor"), resultado.getString("epoca")
+                , resultado.getString("descripcion"), resultado.getString("documentacion"), resultado.getString("observaciones"), resultado.getString("recibio")
+                , resultado.getString("inventario"), resultado.getString("catalogo"), resultado.getString("aprobo")));
+            }
+        }
+
+        catch(Exception e){
+
+        }
+        System.out.println("Busqueda de objetos extraidos de la BD");
+        return busquedaObjetos;
     }
     
 }
