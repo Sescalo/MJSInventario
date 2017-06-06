@@ -13,10 +13,16 @@ public class Busqueda {
     private AtributosObjeto ab;
     private String input;
 
+    
+    public Busqueda() {
+    
+    }
+    
     public Busqueda(AtributosObjeto ab, String input) {
         this.ab = ab;
         this.input = input;
     }
+    
 
     public AtributosObjeto getAb() {
         return ab;
@@ -33,7 +39,5 @@ public class Busqueda {
     public void setInput(String input) {
         this.input = input;
     }
-    
-    
-    
+       
 }

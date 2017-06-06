@@ -10,8 +10,44 @@ package Modelo;
  * @author sescalo
  */
 public enum AtributosObjeto {
-        nombreObjeto, formaAdquisicion, fechaIngreso, numRegistro, valorEconomico, nombreFuente,
-        fechaInventario, numInventario, otrosNumeros, direccionFuente, fechaCatalogo, numCatalogo,
-        espesor, alto, ancho, largo, diametro, peso, procedencia, materiaYTecnica, numeroNegativo,
-        autor, epoca, descripcion, documentacion, observaciones, recibio, inventario, catalogo, aprobo;
+        nombreObjeto("Nombre Objeto"),
+        formaAdquisicion("Forma Adquisición"),
+        fechaIngreso("Fecha Ingreso"),
+        numRegistro("Número Registro"),
+        valorEconomico("Valor Económico"),
+        nombreFuente("Nombre Fuente"),
+        fechaInventario("Fecha Inventario"),
+        numInventario("Número Inventario"),
+        otrosNumeros("Otros Números"),
+        direccionFuente("Dirección Fuente"),
+        fechaCatalogo("Fecha Catálogo"),
+        numCatalogo("Número Catálogo"),
+        espesor("Espesor"),
+        alto("Alto"),
+        ancho("Ancho"),
+        largo("Largo"),
+        diametro("Diámetro"),
+        peso("Peso"),
+        procedencia("Procedencia"),
+        materiaYTecnica("Materia y Técnica"),
+        numeroNegativo("Número Negativo"),
+        autor("Autor"),
+        epoca("Época"),
+        descripcion("Descripción"),
+        documentacion("Documentación"),
+        observaciones("Observaciones"),
+        recibio("Recibió"),
+        inventario("Inventarió"),
+        catalogo("Catalogó"),
+        aprobo("Aprobó");
+        
+        private final String displayName;
+
+        AtributosObjeto(String displayName) {
+            this.displayName = displayName;
+        }
+
+        public String getDisplayName() {
+            return displayName;
+        }
 }

@@ -59,9 +59,15 @@ public class MJSInventarioControlador {
     }
     
     //Actualizar objetos con la base de datos
-    public void actualizarObjetos(){
-        this.objetos = adminBD.listaObjetos();
+    public void actualizarObjetos(ArrayList <Objeto> arr){
+        
+        this.objetos.removeAll(objetos);
+        
+        for(int i=0; i< arr.size(); i++){
+            this.objetos().add(arr.get(i));
+        }
     }
+    
     
     //Actualizar historial con la base de datos
     public void actualizarHistorial(){
@@ -74,6 +80,7 @@ public class MJSInventarioControlador {
         this.usuarios = adminBD.listaUsuarios();
         this.objetos = adminBD.listaObjetos();
         this.historial = adminBD.listaHistorial();
+        this.busqueda = new Busqueda();
         
         es = new EscribirExcel();
 //        es.crearPDF();
@@ -104,16 +111,24 @@ public class MJSInventarioControlador {
 //    Pag Principal
     @GetMapping("/pagPrincipal")
     public String getPagPrincipal(Model model) {
-
+        
         actualizarHistorial();
+        this.busqueda.setInput("");
+        actualizarObjetos(adminBD.listaObjetos());
+        
         System.out.println("Get paginaPrincipal");
         
         return "pagPrincipal";
     }
     
+    //Buscar objetos
     @PostMapping("/pagPrincipal")
-    public void postPagPrincipal(Model model, @ModelAttribute Busqueda busq) {
-        System.out.println("Post PAg Principal");
+    public String postPagPrincipal(Model model, @ModelAttribute Busqueda busqueda) {
+
+        actualizarObjetos(adminBD.busquedaObjetos(busqueda));
+        
+        System.out.println("Post Pag Principal");
+        return "pagPrincipal";
         
     }
     
@@ -206,7 +221,7 @@ public class MJSInventarioControlador {
         System.out.println(objeto.toString());
         this.objetos.add(objeto);    
         adminBD.agregarObjeto(objeto); //agrego a base datos
-        actualizarObjetos();
+//        actualizarObjetos();
         adminBD.agregarMovimiento("Se agregó el objeto "+objeto.getNombreObjeto());
         
         return "pagPrincipal";

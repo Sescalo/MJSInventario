@@ -361,7 +361,7 @@ public class AdminBaseDatos {
 
         try{
             stmt = conn.createStatement();
-            resultado = stmt.executeQuery("SELECT * FROM Objeto WHERE " + busqueda.getAb().toString() + " LIKE %" + busqueda.getInput() + "% ;");
+            resultado = stmt.executeQuery("SELECT * FROM Objeto WHERE " + busqueda.getAb().toString() + " LIKE \"%" + busqueda.getInput() + "%\" ;");
 
             while(resultado.next()){
                 busquedaObjetos.add( new Objeto(resultado.getInt("idObjeto"), resultado.getString("nombreObjeto")
