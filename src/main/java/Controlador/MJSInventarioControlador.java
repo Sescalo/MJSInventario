@@ -1,6 +1,7 @@
 package Controlador;
 
 import BaseDatos.AdminBaseDatos;
+import Modelo.Busqueda;
 import Modelo.EscribirExcel;
 import Modelo.Objeto;
 import Modelo.Usuario;
@@ -29,11 +30,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class MJSInventarioControlador {
     
-    AdminBaseDatos adminBD;
-    ArrayList <Usuario> usuarios;
-    ArrayList <Objeto> objetos;
-    EscribirExcel es;
-    ArrayList<String> historial;
+    private AdminBaseDatos adminBD;
+    private ArrayList <Usuario> usuarios;
+    private ArrayList <Objeto> objetos;
+    private EscribirExcel es;
+    private ArrayList<String> historial;
+    private Busqueda busqueda;
     
 //  =========Atributos del modelo
     @ModelAttribute("usuarios")
@@ -49,6 +51,11 @@ public class MJSInventarioControlador {
     @ModelAttribute("historial")
     public ArrayList<String> historial() {
         return this.historial;
+    }
+    
+    @ModelAttribute("busqueda")
+    public Busqueda busqueda() {
+        return this.busqueda;
     }
     
     //Actualizar objetos con la base de datos
@@ -102,6 +109,11 @@ public class MJSInventarioControlador {
         System.out.println("Get paginaPrincipal");
         
         return "pagPrincipal";
+    }
+    
+    @PostMapping("/pagPrincipal")
+    public void postPagPrincipal(Model model, @ModelAttribute Busqueda busq) {
+        
     }
     
 //    Agregar Usuario
