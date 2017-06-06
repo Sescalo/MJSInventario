@@ -76,7 +76,7 @@ public class MJSInventarioControlador {
         this.historial = adminBD.listaHistorial();
         
         es = new EscribirExcel();
-        es.crearPDF();
+//        es.crearPDF();
         
     }
     
@@ -113,6 +113,7 @@ public class MJSInventarioControlador {
     
     @PostMapping("/pagPrincipal")
     public void postPagPrincipal(Model model, @ModelAttribute Busqueda busq) {
+        System.out.println("Post PAg Principal");
         
     }
     
