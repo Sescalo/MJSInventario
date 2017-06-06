@@ -1,6 +1,7 @@
 package Controlador;
 
 import BaseDatos.AdminBaseDatos;
+import Modelo.AtributosObjeto;
 import Modelo.Busqueda;
 import Modelo.EscribirExcel;
 import Modelo.Objeto;
@@ -64,17 +65,29 @@ public class MJSInventarioControlador {
         this.objetos.removeAll(objetos);
         
         for(int i=0; i< arr.size(); i++){
-            this.objetos().add(arr.get(i));
+            this.objetos.add(arr.get(i));
         }
     }
     
     
     //Actualizar historial con la base de datos
     public void actualizarHistorial(){
-        this.historial = adminBD.listaHistorial();
+        
+        this.historial.removeAll(historial);
+        ArrayList <String> arr = adminBD.listaHistorial();
+        
+        for(int i=0; i< arr.size(); i++){
+            this.historial.add(arr.get(i));
+        }
     }
     
-//    Consructor
+    //Reiniciar el objeto de busqueda
+    public void reiniciarBusqueda(){
+        this.busqueda.setInput("");
+        this.busqueda.setAb(AtributosObjeto.nombreObjeto);
+    }
+    
+//    *****************************Consructor
     public MJSInventarioControlador() throws ClassNotFoundException, SQLException, FileNotFoundException, InvalidFormatException, Exception{
         this.adminBD = new AdminBaseDatos();
         this.usuarios = adminBD.listaUsuarios();
@@ -112,8 +125,9 @@ public class MJSInventarioControlador {
     @GetMapping("/pagPrincipal")
     public String getPagPrincipal(Model model) {
         
-        actualizarHistorial();
-        this.busqueda.setInput("");
+//        actualizarHistorial();
+
+        reiniciarBusqueda();
         actualizarObjetos(adminBD.listaObjetos());
         
         System.out.println("Get paginaPrincipal");
@@ -166,8 +180,10 @@ public class MJSInventarioControlador {
     //    Lista Historial
     @GetMapping("/Historial")
     public String getHistorial(Model model) {
+        
+        actualizarHistorial();
+        
         System.out.println("GET Historial");
-        this.historial = adminBD.listaHistorial();
         return "Historial";
     }  
     
