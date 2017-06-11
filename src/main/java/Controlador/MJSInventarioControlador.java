@@ -4,6 +4,7 @@ import BaseDatos.AdminBaseDatos;
 import Modelo.AtributosObjeto;
 import Modelo.Busqueda;
 import Modelo.EscribirExcel;
+import Modelo.EscribirWord;
 import Modelo.Objeto;
 import Modelo.Usuario;
 import java.io.FileNotFoundException;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+//import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 
 import org.springframework.stereotype.Controller;
@@ -34,7 +35,7 @@ public class MJSInventarioControlador {
     private AdminBaseDatos adminBD;
     private ArrayList <Usuario> usuarios;
     private ArrayList <Objeto> objetos;
-    private EscribirExcel es;
+    private EscribirWord ew;
     private ArrayList<String> historial;
     private Busqueda busqueda;
     
@@ -88,15 +89,15 @@ public class MJSInventarioControlador {
     }
     
 //    *****************************Consructor
-    public MJSInventarioControlador() throws ClassNotFoundException, SQLException, FileNotFoundException, InvalidFormatException, Exception{
+    public MJSInventarioControlador() throws ClassNotFoundException, SQLException, FileNotFoundException, /*InvalidFormatException,*/ Exception{
         this.adminBD = new AdminBaseDatos();
         this.usuarios = adminBD.listaUsuarios();
         this.objetos = adminBD.listaObjetos();
         this.historial = adminBD.listaHistorial();
         this.busqueda = new Busqueda();
+        this.ew = new EscribirWord();
         
-        es = new EscribirExcel();
-//        es.crearPDF();
+        
         
     }
     
@@ -300,14 +301,15 @@ public class MJSInventarioControlador {
      
     
     @RequestMapping("/descarga")
-    public void downloadPDFResource( HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "ind") int indiceObjeto) throws FileNotFoundException, InvalidFormatException {
+    public void downloadPDFResource( HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "ind") int indiceObjeto) throws FileNotFoundException, IOException/*, InvalidFormatException*/ {
         //Preparar el archivo
         //Sobreescribir
-        es.crearHojaCalculo(objetos.get(indiceObjeto));
+        ew.crearWord(objetos.get(indiceObjeto));
+//        ew.convert();
         
         //If user is not authorized - he should be thrown out from here itself
         //Authorized user will download the file
-        String fileName = "Objeto.xls";            
+        String fileName = "HojaInventarioObjeto.doc";            
         Path file = Paths.get(fileName);
         
         if (Files.exists(file)) 

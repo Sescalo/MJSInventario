@@ -32,8 +32,8 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+//import org.apache.poi.xssf.usermodel.XSSFSheet;
+//import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 
 
@@ -44,178 +44,178 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 public class EscribirExcel {
     
-    public void crearHojaCalculo(Objeto pObjeto) throws FileNotFoundException, org.apache.poi.openxml4j.exceptions.InvalidFormatException{
-
-        try {
-            FileInputStream file = new FileInputStream("HojaInv.xls");
-
-            HSSFWorkbook workbook = new HSSFWorkbook(file);
-            HSSFSheet sheet = workbook.getSheetAt(0);
-            
-            
-            //Objeto
-            //Retrieve the row and check for null
-            Row fila = sheet.getRow(5);
-            //Update the value of columna
-            Cell columna = fila.getCell(1);
-            columna.setCellValue(pObjeto.getNombreObjeto());
-            
-            //Forma Adquisicion
-            fila = sheet.getRow(8);
-            columna = fila.getCell(0);
-            columna.setCellValue(pObjeto.getFormaAdquisicion());
-            
-            //Fecha Ingreso
-            fila = sheet.getRow(8);
-            columna = fila.getCell(2);
-            columna.setCellValue(pObjeto.getFechaIngreso());
-            
-            //No. Registro
-            fila = sheet.getRow(8);
-            columna = fila.getCell(4);
-            columna.setCellValue(pObjeto.getNumRegistro());
-            
-            //Valor Economico
-            fila = sheet.getRow(8);
-            columna = fila.getCell(5);
-            columna.setCellValue(pObjeto.getValorEconomico());
-            
-            //Nombre de la Fuente
-            fila = sheet.getRow(11);
-            columna = fila.getCell(0);
-            columna.setCellValue(pObjeto.getNombreFuente());
-            
-            //Fecha Inventario
-            fila = sheet.getRow(11);
-            columna = fila.getCell(2);
-            columna.setCellValue(pObjeto.getFechaInventario());
-            
-            //No. Inventario
-            fila = sheet.getRow(11);
-            columna = fila.getCell(4);
-            columna.setCellValue(pObjeto.getNumInventario());
-            
-            //Otros numeros
-            fila = sheet.getRow(11);
-            columna = fila.getCell(5);
-            columna.setCellValue(pObjeto.getOtrosNumeros());
-            
-            //Direccion fuente
-            fila = sheet.getRow(14);
-            columna = fila.getCell(0);
-            columna.setCellValue(pObjeto.getDireccionFuente());
-            
-            //Fecha Catalogo
-            fila = sheet.getRow(14);
-            columna = fila.getCell(2);
-            columna.setCellValue(pObjeto.getFechaCatalogo());
-            
-            //No. Catalogo
-            fila = sheet.getRow(14);
-            columna = fila.getCell(4);
-            columna.setCellValue(pObjeto.getNumCatalogo());
-            
-            //Espesor
-            fila = sheet.getRow(14);
-            columna = fila.getCell(5);
-            columna.setCellValue(pObjeto.getEspesor());
-            
-            //Alto
-            fila = sheet.getRow(17);
-            columna = fila.getCell(0);
-            columna.setCellValue(pObjeto.getAlto());
-            
-            //Ancho
-            fila = sheet.getRow(17);
-            columna = fila.getCell(1);
-            columna.setCellValue(pObjeto.getAncho());
-            
-            //Largo
-            fila = sheet.getRow(17);
-            columna = fila.getCell(2);
-            columna.setCellValue(pObjeto.getLargo());
-            
-            //Diametro
-            fila = sheet.getRow(17);
-            columna = fila.getCell(4);
-            columna.setCellValue(pObjeto.getDiametro());
-            
-            //Peso
-            fila = sheet.getRow(17);
-            columna = fila.getCell(5);
-            columna.setCellValue(pObjeto.getPeso());
-            
-            //Procedencia
-            fila = sheet.getRow(20);
-            columna = fila.getCell(0);
-            columna.setCellValue(pObjeto.getProcedencia());
-            
-            //Materia y tecnica
-            fila = sheet.getRow(20);
-            columna = fila.getCell(2);
-            columna.setCellValue(pObjeto.getMateriaYTecnica());
-            
-            //Numero negativo
-            fila = sheet.getRow(20);
-            columna = fila.getCell(5);
-            columna.setCellValue(pObjeto.getNumeroNegativo());
-            
-            //Autor
-            fila = sheet.getRow(24);
-            columna = fila.getCell(0);
-            columna.setCellValue(pObjeto.getAutor());
-            
-            //Epoca
-            fila = sheet.getRow(24);
-            columna = fila.getCell(2);
-            columna.setCellValue(pObjeto.getEpoca());
-            
-            //Descripcion
-            fila = sheet.getRow(27);
-            columna = fila.getCell(0);
-            columna.setCellValue(pObjeto.getDescripcion());
-            
-            //Documentacion
-            fila = sheet.getRow(35);
-            columna = fila.getCell(0);
-            columna.setCellValue(pObjeto.getDocumentacion());
-            
-            //Observaciones
-            fila = sheet.getRow(43);
-            columna = fila.getCell(0);
-            columna.setCellValue(pObjeto.getObservaciones());
-            
-            //Recibió
-            fila = sheet.getRow(51);
-            columna = fila.getCell(0);
-            columna.setCellValue(pObjeto.getRecibio());
-            
-            //Inventarió
-            fila = sheet.getRow(51);
-            columna = fila.getCell(2);
-            columna.setCellValue(pObjeto.getInventario());
-            
-            //Catalogó
-            fila = sheet.getRow(51);
-            columna = fila.getCell(4);
-            columna.setCellValue(pObjeto.getCatalogo());
-            
-            //Aprobó
-            fila = sheet.getRow(51);
-            columna = fila.getCell(5);
-            columna.setCellValue(pObjeto.getAprobo());
-            
-            
-            //Cerramos archivo
-            file.close();
-            FileOutputStream outFile = new FileOutputStream(new File("Objeto.xls"));
-            workbook.write(outFile);
-            outFile.close();
-            
-            } catch (Exception ex) {
-            ex.printStackTrace();
-            }
-    }
+//    public void crearHojaCalculo(Objeto pObjeto) throws FileNotFoundException, org.apache.poi.openxml4j.exceptions.InvalidFormatException{
+//
+//        try {
+//            FileInputStream file = new FileInputStream("HojaInv.xls");
+//
+//            HSSFWorkbook workbook = new HSSFWorkbook(file);
+//            HSSFSheet sheet = workbook.getSheetAt(0);
+//            
+//            
+//            //Objeto
+//            //Retrieve the row and check for null
+//            Row fila = sheet.getRow(5);
+//            //Update the value of columna
+//            Cell columna = fila.getCell(1);
+//            columna.setCellValue(pObjeto.getNombreObjeto());
+//            
+//            //Forma Adquisicion
+//            fila = sheet.getRow(8);
+//            columna = fila.getCell(0);
+//            columna.setCellValue(pObjeto.getFormaAdquisicion());
+//            
+//            //Fecha Ingreso
+//            fila = sheet.getRow(8);
+//            columna = fila.getCell(2);
+//            columna.setCellValue(pObjeto.getFechaIngreso());
+//            
+//            //No. Registro
+//            fila = sheet.getRow(8);
+//            columna = fila.getCell(4);
+//            columna.setCellValue(pObjeto.getNumRegistro());
+//            
+//            //Valor Economico
+//            fila = sheet.getRow(8);
+//            columna = fila.getCell(5);
+//            columna.setCellValue(pObjeto.getValorEconomico());
+//            
+//            //Nombre de la Fuente
+//            fila = sheet.getRow(11);
+//            columna = fila.getCell(0);
+//            columna.setCellValue(pObjeto.getNombreFuente());
+//            
+//            //Fecha Inventario
+//            fila = sheet.getRow(11);
+//            columna = fila.getCell(2);
+//            columna.setCellValue(pObjeto.getFechaInventario());
+//            
+//            //No. Inventario
+//            fila = sheet.getRow(11);
+//            columna = fila.getCell(4);
+//            columna.setCellValue(pObjeto.getNumInventario());
+//            
+//            //Otros numeros
+//            fila = sheet.getRow(11);
+//            columna = fila.getCell(5);
+//            columna.setCellValue(pObjeto.getOtrosNumeros());
+//            
+//            //Direccion fuente
+//            fila = sheet.getRow(14);
+//            columna = fila.getCell(0);
+//            columna.setCellValue(pObjeto.getDireccionFuente());
+//            
+//            //Fecha Catalogo
+//            fila = sheet.getRow(14);
+//            columna = fila.getCell(2);
+//            columna.setCellValue(pObjeto.getFechaCatalogo());
+//            
+//            //No. Catalogo
+//            fila = sheet.getRow(14);
+//            columna = fila.getCell(4);
+//            columna.setCellValue(pObjeto.getNumCatalogo());
+//            
+//            //Espesor
+//            fila = sheet.getRow(14);
+//            columna = fila.getCell(5);
+//            columna.setCellValue(pObjeto.getEspesor());
+//            
+//            //Alto
+//            fila = sheet.getRow(17);
+//            columna = fila.getCell(0);
+//            columna.setCellValue(pObjeto.getAlto());
+//            
+//            //Ancho
+//            fila = sheet.getRow(17);
+//            columna = fila.getCell(1);
+//            columna.setCellValue(pObjeto.getAncho());
+//            
+//            //Largo
+//            fila = sheet.getRow(17);
+//            columna = fila.getCell(2);
+//            columna.setCellValue(pObjeto.getLargo());
+//            
+//            //Diametro
+//            fila = sheet.getRow(17);
+//            columna = fila.getCell(4);
+//            columna.setCellValue(pObjeto.getDiametro());
+//            
+//            //Peso
+//            fila = sheet.getRow(17);
+//            columna = fila.getCell(5);
+//            columna.setCellValue(pObjeto.getPeso());
+//            
+//            //Procedencia
+//            fila = sheet.getRow(20);
+//            columna = fila.getCell(0);
+//            columna.setCellValue(pObjeto.getProcedencia());
+//            
+//            //Materia y tecnica
+//            fila = sheet.getRow(20);
+//            columna = fila.getCell(2);
+//            columna.setCellValue(pObjeto.getMateriaYTecnica());
+//            
+//            //Numero negativo
+//            fila = sheet.getRow(20);
+//            columna = fila.getCell(5);
+//            columna.setCellValue(pObjeto.getNumeroNegativo());
+//            
+//            //Autor
+//            fila = sheet.getRow(24);
+//            columna = fila.getCell(0);
+//            columna.setCellValue(pObjeto.getAutor());
+//            
+//            //Epoca
+//            fila = sheet.getRow(24);
+//            columna = fila.getCell(2);
+//            columna.setCellValue(pObjeto.getEpoca());
+//            
+//            //Descripcion
+//            fila = sheet.getRow(27);
+//            columna = fila.getCell(0);
+//            columna.setCellValue(pObjeto.getDescripcion());
+//            
+//            //Documentacion
+//            fila = sheet.getRow(35);
+//            columna = fila.getCell(0);
+//            columna.setCellValue(pObjeto.getDocumentacion());
+//            
+//            //Observaciones
+//            fila = sheet.getRow(43);
+//            columna = fila.getCell(0);
+//            columna.setCellValue(pObjeto.getObservaciones());
+//            
+//            //Recibió
+//            fila = sheet.getRow(51);
+//            columna = fila.getCell(0);
+//            columna.setCellValue(pObjeto.getRecibio());
+//            
+//            //Inventarió
+//            fila = sheet.getRow(51);
+//            columna = fila.getCell(2);
+//            columna.setCellValue(pObjeto.getInventario());
+//            
+//            //Catalogó
+//            fila = sheet.getRow(51);
+//            columna = fila.getCell(4);
+//            columna.setCellValue(pObjeto.getCatalogo());
+//            
+//            //Aprobó
+//            fila = sheet.getRow(51);
+//            columna = fila.getCell(5);
+//            columna.setCellValue(pObjeto.getAprobo());
+//            
+//            
+//            //Cerramos archivo
+//            file.close();
+//            FileOutputStream outFile = new FileOutputStream(new File("Objeto.xls"));
+//            workbook.write(outFile);
+//            outFile.close();
+//            
+//            } catch (Exception ex) {
+//            ex.printStackTrace();
+//            }
+//    }
 
 
     public void crearPDF() throws Exception{

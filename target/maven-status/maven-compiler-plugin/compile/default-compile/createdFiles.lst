@@ -6,4 +6,5 @@ Modelo/DatosUsuario.class
 BaseDatos/AdminBaseDatos.class
 Controlador/Application.class
 Modelo/EscribirExcel.class
+Modelo/EscribirWord.class
 Modelo/AtributosObjeto.class
