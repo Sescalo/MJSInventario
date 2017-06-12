@@ -26,6 +26,14 @@ import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.PdfWriter;
 import org.apache.poi.hwpf.extractor.WordExtractor;
 import org.apache.poi.hwpf.usermodel.Paragraph;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.util.Units;
+import org.apache.poi.xwpf.model.XWPFHeaderFooterPolicy;
+import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFHeader;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.apache.poi.xwpf.usermodel.XWPFRun;
 
 
 
@@ -114,7 +122,6 @@ public class EscribirWord {
         return doc;
     }
 
-    
     private void saveWord(String filePath, HWPFDocument doc) throws FileNotFoundException, IOException{
         FileOutputStream out = null;
         try{
@@ -126,56 +133,40 @@ public class EscribirWord {
         }
     }
     
+    public void cambiarLogo() throws FileNotFoundException, IOException, InvalidFormatException{
+        //Colocar imagen
+//        XWPFDocument doc = new XWPFDocument();
+////        XWPFDocument doc = new XWPFDocument(new FileInputStream("HojaInventarioObjeto.doc"));
+////
+//        XWPFParagraph title = doc.createParagraph();    
+//        XWPFRun run = title.createRun();
+//        run.setText("Fig.1 A Natural Scene");
+//        run.setBold(true);
+//        title.setAlignment(ParagraphAlignment.CENTER);
+//
+//        String imgFile = "PlayStation_1_Logo.png";
+//        FileInputStream is = new FileInputStream(imgFile);
+//        run.addBreak();
+//        run.addPicture(is, XWPFDocument.PICTURE_TYPE_JPEG, imgFile, Units.toEMU(200), Units.toEMU(200)); // 200x200 pixels
+//        is.close();
+//
+//        FileOutputStream fos = new FileOutputStream("test4.doc");
+//        doc.write(fos);
+//        fos.close();
+
+        //Header
+//        
+//        XWPFDocument docu = new XWPFDocument(new FileInputStream("test4.doc"));
+//        
+//        XWPFHeaderFooterPolicy headerFooterPolicy = docu.getHeaderFooterPolicy();
+//        XWPFHeader defaultHeader = headerFooterPolicy.getDefaultHeader();
+//        
+//        defaultHeader.getParagraphs().get(0).getRuns().get(0).setText("New Text", 0);
+//        // this is only to put some space between the content in the header and the real content
+//        defaultHeader.getParagraphs().get(defaultHeader.getParagraphs().size() - 1).setSpacingAfter(300);
+
     
-    
-    
-//    public void convert() throws FileNotFoundException, IOException{
-//
-//        POIFSFileSystem fs = null;  
-//        Document document = new Document();
-//
-//         try {  
-//             System.out.println("Starting the test");  
-//             fs = new POIFSFileSystem(new FileInputStream("HojaInventarioObjeto.doc"));  
-//
-//             HWPFDocument doc = new HWPFDocument(fs);  
-//             WordExtractor we = new WordExtractor(doc);  
-//
-//             OutputStream file = new FileOutputStream(new File("test.pdf")); 
-//
-//             PdfWriter writer = PdfWriter.getInstance(document, file);  
-//
-//             Range range = doc.getRange();
-//             document.open();  
-//             writer.setPageEmpty(true);  
-//             document.newPage();  
-//             writer.setPageEmpty(true);  
-//
-//             String[] paragraphs = we.getParagraphText();  
-//             for (int i = 0; i < paragraphs.length; i++) {  
-//
-//                 org.apache.poi.hwpf.usermodel.Paragraph pr = range.getParagraph(i);
-//                 CharacterRun run = pr.getCharacterRun(i);
-//                 run.setBold(true);
-//                 run.setCapitalized(true);
-//                 run.setItalic(true);
-//                 paragraphs[i] = paragraphs[i].replaceAll("\\cM?\r?\n", "");  
-//             System.out.println("Length:" + paragraphs[i].length());  
-//             System.out.println("Paragraph" + i + ": " + paragraphs[i].toString());  
-//
-//             // add the paragraph to the document  
-//             document.add(new com.lowagie.text.Paragraph(paragraphs[i]));  
-//             }  
-//
-//             System.out.println("Document testing completed");  
-//         } catch (Exception e) {  
-//             System.out.println("Exception during test");  
-//             e.printStackTrace();  
-//         } finally {  
-//                         // close the document  
-//            document.close();  
-//                     } 
-//    }  
+    }
     
     
 }

@@ -39,7 +39,14 @@ public class MJSInventarioControlador {
     private ArrayList<String> historial;
     private Busqueda busqueda;
     
+    private Usuario user;
+    
 //  =========Atributos del modelo
+    @ModelAttribute("user")     //Usuario que esta utilizando el sistema
+    public Usuario user() {
+        return this.user;
+    }
+    
     @ModelAttribute("usuarios")
     public ArrayList<Usuario> usuarios() {
         return this.usuarios;
@@ -96,7 +103,7 @@ public class MJSInventarioControlador {
         this.historial = adminBD.listaHistorial();
         this.busqueda = new Busqueda();
         this.ew = new EscribirWord();
-        
+        ew.cambiarLogo();
         
         
     }
