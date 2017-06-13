@@ -8,11 +8,6 @@
 	  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script> -->
 	  <!-- <script src="/home/oskr/Desktop/bootstrap-3.3.7-dist/css/bootstrap.css"></script> -->
 
-    <style>
-      #left { float:left }
-      #right { float:right }
-    </style>
-
 	</head>
 
     <body class="" style="">
@@ -26,17 +21,12 @@
 
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-
               <!-- <li class="active"> -->
               <li class="active"><a href="AgregarObjeto">Agregar Objeto<span class="sr-only">(current)</span></a></li>
-
               <li><a href="Usuarios">Usuarios</a></li>
               <li><a href="Historial">Historial</a></li>
               <li><a href="#">Configuración</a></li>
-
             </ul>
-
-
 
             <ul class="nav navbar-nav navbar-right">
               <li><a href="#">Salir</a></li>
@@ -54,272 +44,208 @@
 
       <!-- <div class ="well bs-component" > -->
       <!-- <div class="row"> -->
-        <div class="jumbotron">
+      <div class="jumbotron">
+        <form action="#" th:action="@{/AgregarObjeto}" th:object="${objeto}" method="post">
 
-          <form class="form-horizontal" action="#" th:action="@{/AgregarObjeto}" th:object="${objeto}" method="post">
-            <fieldset>
+					<div class="row">
+		        <div class="col-xs-6 form-group">
+	            <label>Objeto</label>
+							<input class="form-control" placeholder="Objeto" th:field="*{nombreObjeto}" type="text"/>
+		        </div>
+					</div>
 
-              <div class="form-group">
-                <label for="inputObjeto" class="col-lg-1 control-label">Objeto</label>
-                <div class="col-lg-5">
-                  <input class="form-control" id="inputObjeto" placeholder="Objeto" type="text" th:field="*{nombreObjeto}"/>
+					<br></br>
+
+					<div class="row">
+
+		        <div class="col-xs-6 form-group">
+	            <label>Forma de Adquisición</label>
+	            <input class="form-control" th:field="*{formaAdquisicion}" type="text"/>
+		        </div>
+
+						<div class="col-xs-6 form-group">
+	            <label>Valor Económico</label>
+	            <input class="form-control" th:field="*{valorEconomico}" type="text"/>
+		        </div>
+
+		    	</div>
+
+					<div class="row">
+						<div class="col-xs-6 form-group">
+	            <label>Fecha Ingreso</label>
+	            <input class="form-control" th:field="*{fechaIngreso}" type="text"/>
+		        </div>
+						<div class="col-xs-6 form-group">
+	            <label>Fecha Inventario</label>
+	            <input class="form-control" th:field="*{fechaInventario}" type="text"/>
+		        </div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-6 form-group">
+	            <label>Fecha Catálogo</label>
+	            <input class="form-control" th:field="*{fechaCatalogo}" type="text"/>
+		        </div>
+						<div class="col-xs-6 form-group">
+	            <label>Número Catálogo</label>
+	            <input class="form-control" th:field="*{numCatalogo}" type="text"/>
+		        </div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-6 form-group">
+	            <label>Número de Registro</label>
+	            <input class="form-control" th:field="*{numRegistro}" type="text"/>
+		        </div>
+						<div class="col-xs-6 form-group">
+	            <label>Número Inventario</label>
+	            <input class="form-control" th:field="*{numInventario}" type="text"/>
+		        </div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-6 form-group">
+	            <label>Fuente</label>
+	            <input class="form-control" th:field="*{nombreFuente}" type="text"/>
+		        </div>
+						<div class="col-xs-6 form-group">
+	            <label>Dirección fuente</label>
+	            <input class="form-control" th:field="*{direccionFuente}" type="text"/>
+		        </div>
+					</div>
+
+					<br></br>
+					<h2>Características</h2>
+
+					<div class="row">
+						<div class="col-xs-12 form-group">
+	            <div class="row">
+                <label class="col-xs-3">Alto</label>
+								<label class="col-xs-3">Ancho</label>
+								<label class="col-xs-3">Largo</label>
+								<label class="col-xs-3">Diámetro</label>
+	            </div>
+	            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <input class="form-control" placeholder="Alto" th:field="*{alto}" type="text"/>
                 </div>
-              </div>
-
-                <br></br>
-
-              <div id="left">
-
-                <div class="form-group">
-                  <label for="adquisicion" class="col-lg-2 control-label">Forma adquisición</label>
-                  <div class="col-lg-10">
-                    <input class="form-control" id="inputObjeto" placeholder="" type="text" th:field="*{formaAdquisicion}"/>
-                  </div>
+                <div class="col-xs-3 col-sm-3">
+                    <input class="form-control" placeholder="Ancho" th:field="*{ancho}" type="text"/>
                 </div>
-
-                <div class="form-group">
-                  <label for="fechaIngreso" class="col-lg-2 control-label">Fecha Ingreso</label>
-                  <div class="col-lg-10">
-                    <input class="form-control" id="fechaIngreso" placeholder="dd/mm/aaaa" type="text" th:field="*{fechaIngreso}"/>
-                  </div>
+								<div class="col-xs-3 col-sm-3">
+                    <input class="form-control" placeholder="Largo" th:field="*{largo}" type="text"/>
                 </div>
-
-                <div class="form-group">
-                  <label for="fechaCatalogo" class="col-lg-2 control-label">Fecha Catálogo</label>
-                  <div class="col-lg-10">
-                    <input class="form-control" id="fechaCatalogo" placeholder="dd/mm/aaaa" type="text" th:field="*{fechaCatalogo}"/>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="numRegistro" class="col-lg-2 control-label">No. Registro</label>
-                  <div class="col-lg-10">
-                    <input class="form-control" id="numRegistro" placeholder="" type="text" th:field="*{numRegistro}"/>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="fuente" class="col-lg-2 control-label">Fuente</label>
-                  <div class="col-lg-10">
-                    <input class="form-control" id="fuente" placeholder="" type="text" th:field="*{nombreFuente}"/>
-                  </div>
-                </div>
-
-              </div>
-
-              <div id="right">
-
-                <div class="form-group">
-                  <label for="valorEconomico" class="col-lg-2 control-label">Valor Económico</label>
-                  <div class="col-lg-10">
-                    <input class="form-control" id="valorEconomico" placeholder="" type="text" th:field="*{valorEconomico}"/>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="fechaInventario" class="col-lg-2 control-label">Fecha Inventario</label>
-                  <div class="col-lg-10">
-                    <input class="form-control" id="fechaInventario" placeholder="dd/mm/aaaa" type="text" th:field="*{fechaInventario}"/>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="numCatalogo" class="col-lg-2 control-label">No. Catalogo</label>
-                  <div class="col-lg-10">
-                    <input class="form-control" id="numCatalogo" placeholder="" type="text" th:field="*{numCatalogo}"/>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="numInventario" class="col-lg-2 control-label">No. Inventario</label>
-                  <div class="col-lg-10">
-                    <input class="form-control"  id="numInventario" placeholder="" type="text" th:field="*{numInventario}"/>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="dirFuente" class="col-lg-2 control-label">Dir. Fuente</label>
-                  <div class="col-lg-10">
-                    <input class="form-control" id="dirFuente" placeholder="" type="text" th:field="*{direccionFuente}"/>
-                  </div>
-                </div>
-
-              </div>
-
-            </fieldset>
-
-             <br></br>
-            <h2>Características</h2>
-            <fieldset>
-
-              <div id="left">
-
-                <div class="form-group">
-                  <label for="alto" class="col-lg-2 control-label">Alto</label>
-                  <div class="col-lg-10">
-                    <input class="form-control" id="alto" placeholder="" type="text" th:field="*{alto}"/>
-                  </div>
+								<div class="col-xs-6 col-sm-3">
+                    <input class="form-control" placeholder="Diámetro" th:field="*{diametro}" type="text"/>
                 </div>
 
-                <div class="form-group">
-                  <label for="largo" class="col-lg-2 control-label">Largo</label>
-                  <div class="col-lg-10">
-                    <input class="form-control" id="largo" placeholder="" type="text" th:field="*{largo}"/>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="espesor" class="col-lg-2 control-label">Espesor</label>
-                  <div class="col-lg-10">
-                    <input class="form-control" id="espesor" placeholder="" type="text" th:field="*{espesor}"/>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="procedencia" class="col-lg-3 control-label">Procedencia</label>
-                  <div class="col-lg-10">
-                    <textarea class="form-control" rows="4" id="procedencia" th:field="*{procedencia}"></textarea>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="autor" class="col-lg-2 control-label">Autor</label>
-                  <div class="col-lg-10">
-                    <input class="form-control" id="autor" placeholder="" type="text" th:field="*{autor}"/>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="numNegativo" class="col-lg-2 control-label">No. Negativo</label>
-                    <div class="col-lg-10">
-                        <input class="form-control" id="numNegativo" placeholder="" type="text" th:field="*{numeroNegativo}"/>
-                    </div>
-                </div>
-
-              </div>
-
-              <div id="right">
-
-                <div class="form-group">
-                  <label for="ancho" class="col-lg-2 control-label">Ancho</label>
-                  <div class="col-lg-10">
-                    <input class="form-control" id="ancho" placeholder="" type="text" th:field="*{ancho}"/>
-                  </div>
-                </div>
-
-                  <div class="form-group">
-                    <label for="diametro" class="col-lg-2 control-label">Diámetro</label>
-                    <div class="col-lg-10">
-                      <input class="form-control" id="diametro" placeholder="" type="text" th:field="*{diametro}"/>
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="peso" class="col-lg-2 control-label">Peso</label>
-                    <div class="col-lg-10">
-                      <input class="form-control" id="peso" placeholder="" type="text" th:field="*{peso}"/>
-                    </div>
-                  </div>
-
-									<div class="form-group">
-	                  <label for="materiaTecnica" class="col-lg-3 control-label">Materia y Técnica</label>
-	                  <div class="col-lg-10">
-	                    <textarea class="form-control" rows="3" id="materiaTecnica" th:field="*{materiaYTecnica}"></textarea>
-	                  </div>
-	                </div>
-
-									<div class="form-group">
-                    <label for="epoca" class="col-lg-2 control-label">Epoca</label>
-                    <div class="col-lg-10">
-                      <input class="form-control" id="epoca" placeholder="" type="text" th:field="*{epoca}"/>
-                    </div>
-                  </div>
+		            </div>
+		        </div>
+	        </div>
 
 
-              </div>
+					<div class="row">
+						<div class="col-xs-6 form-group">
+	            <label>Espesor</label>
+	            <input class="form-control" th:field="*{espesor}" type="text"/>
+		        </div>
+						<div class="col-xs-6 form-group">
+		            <label>Peso</label>
+		            <input class="form-control" th:field="*{peso}" type="text"/>
+		        </div>
+					</div>
 
-            </fieldset>
+					<div class="row">
+						<div class="col-xs-6 form-group">
+	            <label>Procedencia</label>
+	            <textarea rows="3" class="form-control" th:field="*{procedencia}"> </textarea>
+		        </div>
+						<div class="col-xs-6 form-group">
+	            <label>Materia y Técnica</label>
+	            <textarea rows="3" class="form-control" th:field="*{materiaYTecnica}"> </textarea>
+		        </div>
+					</div>
 
-						<h2>Descripción</h2>
-						<fieldset>
-							<div class="col-lg-10">
-								<textarea class="form-control" rows="4" id="descripcion" th:field="*{descripcion}"></textarea>
-							</div>
-						</fieldset>
+					<div class="row">
+						<div class="col-xs-6 form-group">
+	            <label>Autor</label>
+	            <input class="form-control" th:field="*{autor}" type="text"/>
+		        </div>
+						<div class="col-xs-6 form-group">
+	            <label>Epoca</label>
+	            <input class="form-control" th:field="*{epoca}" type="text"/>
+		        </div>
+					</div>
 
-						<br></br>
-						<h2>Documentación</h2>
-						<fieldset>
-							<div class="col-lg-10">
-								<textarea class="form-control" rows="4" id="documentacion" th:field="*{documentacion}"></textarea>
-							</div>
-						</fieldset>
+					<div class="row">
+						<div class="col-xs-6 form-group">
+	            <label>Número de negativo</label>
+	            <input class="form-control" th:field="*{numeroNegativo}" type="text"/>
+		        </div>
+					</div>
 
-						<br></br>
-						<h2>Observaciones</h2>
-						<fieldset>
-							<div class="col-lg-10">
-								<textarea class="form-control" rows="4" id="observaciones" th:field="*{observaciones}"></textarea>
-							</div>
-						</fieldset>
+					<br></br>
+					<h2>Descripción</h2>
 
-						<br></br>
-						<fieldset>
-							<div id="left">
+					<div class="row">
+						<div class="col-xs-12 form-group">
+	            <textarea rows="4" class="form-control" th:field="*{descripcion}"> </textarea>
+		        </div>
+					</div>
 
-								<div class="form-group">
-									<label for="recibio" class="col-lg-3 control-label">Recibió</label>
-									<div class="col-lg-10">
-										<input class="form-control" id="recibio" placeholder="" type="text" th:field="*{recibio}"/>
-									</div>
-								</div>
+					<h2>Documentación</h2>
 
-								<div class="form-group">
-									<label for="quienCatalogo" class="col-lg-3 control-label">Catalogó</label>
-									<div class="col-lg-10">
-										<input class="form-control" id="quienCatalogo" placeholder="" type="text" th:field="*{catalogo}"/>
-									</div>
-								</div>
+					<div class="row">
+						<div class="col-xs-12 form-group">
+	            <textarea rows="4" class="form-control" th:field="*{documentacion}"> </textarea>
+		        </div>
+					</div>
 
-							</div>
+					<h2>Observaciones</h2>
 
-							<div id="right">
+					<div class="row">
+						<div class="col-xs-12 form-group">
+	            <textarea rows="4" class="form-control" th:field="*{observaciones}"> </textarea>
+		        </div>
+					</div>
 
-								<div class="form-group">
-									<label for="quienInventario" class="col-lg-3 control-label">Inventarió</label>
-									<div class="col-lg-10">
-										<input class="form-control" id="quienInventario" placeholder="" type="text" th:field="*{inventario}"/>
-									</div>
-								</div>
+					<div class="row">
+						<div class="col-xs-12 form-group">
+		            <div class="row">
+		                <label class="col-xs-3">Recibió</label>
+										<label class="col-xs-3">Inventarió</label>
+										<label class="col-xs-3">Catalogó</label>
+										<label class="col-xs-3">Aprobó</label>
+		            </div>
+		            <div class="row">
+		                <div class="col-xs-3 col-sm-3">
+		                    <input class="form-control" placeholder="Recibió" th:field="*{recibio}" type="text"/>
+		                </div>
+		                <div class="col-xs-3 col-sm-3">
+		                    <input class="form-control" placeholder="Inventarió" th:field="*{inventario}" type="text"/>
+		                </div>
+										<div class="col-xs-3 col-sm-3">
+		                    <input class="form-control" placeholder="Catalogó" th:field="*{catalogo}" type="text"/>
+		                </div>
+										<div class="col-xs-6 col-sm-3">
+		                    <input class="form-control" placeholder="Aprobó" th:field="*{aprobo}" type="text"/>
+		                </div>
 
-								<div class="form-group">
-									<label for="quienAprobo" class="col-lg-3 control-label">Aprobó</label>
-									<div class="col-lg-10">
-										<input class="form-control" id="quienAprobo" placeholder="" type="text" th:field="*{aprobo}"/>
-									</div>
-								</div>
-							</div>
+		            </div>
+		        </div>
+	        </div>
 
-							<div class="form-group">
-					      <div class="col-lg-10 col-lg-offset-2">
-					        <button type="reset" class="btn btn-default">Cancelar</button>
-					        <button type="submit" class="btn btn-primary">Agregar</button>
-					      </div>
-					    </div>
+					<br></br>
 
-						</fieldset>
-          </form>
-          
-        </div>
-      <!-- </div> -->
+					<div class="row">
+						<div class="col-xs-12 form-group">
+								<button type="reset" class="btn btn-default">Cancelar</button>
+								<button type="submit" class="btn btn-primary">Agregar</button>
+						</div>
+					</div>
 
-
-
-
-  </div>
-
-
-
+        </form>
+      </div>
+		</div>
   </body>
-
 </html>

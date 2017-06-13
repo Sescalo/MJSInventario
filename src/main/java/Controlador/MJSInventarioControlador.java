@@ -77,7 +77,6 @@ public class MJSInventarioControlador {
         }
     }
     
-    
     //Actualizar historial con la base de datos
     public void actualizarHistorial(){
         
@@ -120,8 +119,10 @@ public class MJSInventarioControlador {
     public String postInicioSesion(Model model, @ModelAttribute Usuario usuario){
         
         if(!adminBD.existeUsuario(usuario)) { //No existe el usuario
-//            model.addAttribute("error", true);
+            
 //            mostar mensaje error
+            model.addAttribute("error", "Combinación de usuario y contraseña incorrecta");
+
             usuario = new Usuario();
             return "InicioSesion";
         }
@@ -256,7 +257,7 @@ public class MJSInventarioControlador {
     public String getVerObjeto(Model model, @RequestParam(value = "ind") int indiceObjeto) {
         
         model.addAttribute("objeto", adminBD.listaObjetos().get(indiceObjeto));
-        model.addAttribute("indice", indiceObjeto);
+        model.addAttribute("indice", indiceObjeto); // Para efectos de descarga y editar
         
 //        System.out.println(adminBD.listaObjetos().get(indiceObjeto).toString());
         
@@ -272,12 +273,14 @@ public class MJSInventarioControlador {
         if (action.equals("eliminar")){
             adminBD.eliminarObjeto(objeto);
             adminBD.agregarMovimiento("Se eliminó el objeto "+objeto.getNombreObjeto());
+            actualizarObjetos(adminBD.listaObjetos());
         }
         
         
-        else if(action.equals("editar")){
-            return getEditarObjeto(model, objeto);
-        }
+//        else if(action.equals("editar")){
+//            model.addAttribute("objeto", objeto);
+//            return "EditarObjeto";
+//        }
         
 //        actualizar usuarios      
 //        this.usuarios = adminBD.listaUsuarios();
@@ -286,9 +289,9 @@ public class MJSInventarioControlador {
     
     //    Editar un objeto
     @GetMapping("/EditarObjeto")
-    public String getEditarObjeto(Model model, Objeto objeto) {
+    public String getEditarObjeto(Model model, @RequestParam(value = "ind") int indiceObjeto) {
         
-        model.addAttribute("objeto", objeto);
+        model.addAttribute("objeto", adminBD.listaObjetos().get(indiceObjeto));
         
         return "EditarObjeto";
     }
@@ -301,8 +304,9 @@ public class MJSInventarioControlador {
         adminBD.actualizarObjeto(objeto);
         adminBD.agregarMovimiento("Edición del objeto "+objeto.getNombreObjeto());
         
-//        actualizar usuarios      
-//        this.usuarios = adminBD.listaUsuarios();
+//        actualizar objetos
+        actualizarObjetos(adminBD.listaObjetos());
+
         return "pagPrincipal";
     }
      
