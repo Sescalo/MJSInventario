@@ -39,12 +39,14 @@ public class MJSInventarioControlador {
     private ArrayList<String> historial;
     private Busqueda busqueda;
     
-    private Usuario user;
+    private Usuario usuario;
+    
+    
     
 //  =========Atributos del modelo
-    @ModelAttribute("user")     //Usuario que esta utilizando el sistema
-    public Usuario user() {
-        return this.user;
+    @ModelAttribute("usuario")     //Usuario que esta utilizando el sistema
+    public Usuario usuario() {
+        return this.usuario;
     }
     
     @ModelAttribute("usuarios")
@@ -97,12 +99,13 @@ public class MJSInventarioControlador {
 //    *****************************Consructor
     public MJSInventarioControlador() throws ClassNotFoundException, SQLException, FileNotFoundException, /*InvalidFormatException,*/ Exception{
         this.adminBD = new AdminBaseDatos();
+        this.usuario = new Usuario();
         this.usuarios = adminBD.listaUsuarios();
         this.objetos = adminBD.listaObjetos();
         this.historial = adminBD.listaHistorial();
         this.busqueda = new Busqueda();
         this.ew = new EscribirWord();
-        ew.cambiarLogo();
+//        ew.cambiarLogo();
         
         
     }
@@ -110,24 +113,31 @@ public class MJSInventarioControlador {
 //    Inicio Sesion
     @GetMapping("/InicioSesion")
     public String getInicioSesion(Model model) {
-        
-        model.addAttribute("usuario", new Usuario());
+        usuario().setIsAdmin(true);
         return "InicioSesion";
     }
 
     @PostMapping("/InicioSesion")
     public String postInicioSesion(Model model, @ModelAttribute Usuario usuario){
         
-        if(!adminBD.existeUsuario(usuario)) { //No existe el usuario
-            
-//            mostar mensaje error
-            model.addAttribute("error", "Combinación de usuario y contraseña incorrecta");
+        if(adminBD.existeUsuario(usuario)) { //Existe el usuario
+            if(adminBD.isAdmin(usuario.getNombreUsuario())){ //Buscar si el usuario es admin
+                usuario().setIsAdmin(true);
+            }
+            else{
+                usuario().setIsAdmin(false);
+            }
 
-            usuario = new Usuario();
+        }
+        else{ //No existe Usuario
+            //mostar mensaje error
+            model.addAttribute("error", "Combinación de usuario y contraseña incorrecta");
             return "InicioSesion";
         }
+
+        
         adminBD.agregarMovimiento("Inicio de Sesión para "+usuario.getNombreUsuario());
-        return getPagPrincipal(model);
+        return "pagPrincipal";
     }
     
 //    Pag Principal
@@ -217,6 +227,7 @@ public class MJSInventarioControlador {
 
         if (action.equals("eliminar")){
             adminBD.eliminarUsuario(usuario);
+           
             adminBD.agregarMovimiento("Se eliminó el usuario "+usuario.getNombreUsuario());
         }
         
@@ -299,7 +310,6 @@ public class MJSInventarioControlador {
     @PostMapping("/EditarObjeto")
     public String postEditarObjeto(Model model, @ModelAttribute Objeto objeto) {
         
-        System.out.println(objeto.toString());
         //Preguntar contrasena administrador
         adminBD.actualizarObjeto(objeto);
         adminBD.agregarMovimiento("Edición del objeto "+objeto.getNombreObjeto());

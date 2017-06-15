@@ -19,27 +19,25 @@
 		    </div>
 
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		      <ul class="nav navbar-nav">
-
+          
+		      <ul th:if="${usuario.isAdmin ==  true}" class="nav navbar-nav">
 	      		<!-- <li class="active"> -->
-		        <li><a href="AgregarObjeto">Agregar Objeto<span class="sr-only">(current)</span></a></li>
-
-		        <li><a href="Usuarios">Usuarios</a></li>
-		        <li><a href="Historial">Historial</a></li>
-		        <li><a href="#">Configuración</a></li>
-            
+              <li><a href="AgregarObjeto">Agregar Objeto<span class="sr-only">(current)</span></a></li>
+              <li><a href="Usuarios">Usuarios</a></li>
+              <li><a href="Historial">Historial</a></li>
+              <li><a href="#">Configuración</a></li>    
 		      </ul>
-
+            
 		      
 
 		      <ul class="nav navbar-nav navbar-right">
-		        <li><a href="#">Salir</a></li>
+		        <li><a href="InicioSesion">Salir</a></li>
 		      </ul>
 
 		    </div>
 		  </div>
 		</nav>
-    
+     <!--<p th:text="'Usuario Admin =' + ${usuario.isAdmin}"></p>-->
     
 
 		<div class="container">

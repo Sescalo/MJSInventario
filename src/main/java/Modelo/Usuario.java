@@ -15,17 +15,18 @@ public class Usuario {
     private String contrasena;
     private boolean isAdmin;
 
-    public Usuario(int idUsuario, String nombreUsuario, String nombre, String correo, int telefono, String contrasena, boolean isAdmin) {
+    public Usuario(int idUsuario, String nombreUsuario, String nombre, String correo, int telefono, String contrasena, boolean pisAdmin) {
         this.idUsuario = idUsuario;
         this.nombreUsuario = nombreUsuario;
         this.nombre = nombre;
         this.correo = correo;
         this.telefono = telefono;
         this.contrasena = contrasena;
-        this.isAdmin = isAdmin;
+        this.isAdmin = pisAdmin;
     }
     
     public Usuario(){
+//        this.isAdmin = true;
     }
     
     public String encriptarContra(String pw){
@@ -59,7 +60,7 @@ public class Usuario {
 
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
-    }
+    }   
 
     public String getNombre() {
         return nombre;
@@ -107,8 +108,8 @@ public class Usuario {
         return isAdmin;
     }
 
-    public void setIsAdmin(boolean isAdmin) {
-        this.isAdmin = isAdmin;
+    public void setIsAdmin(boolean b) {
+        this.isAdmin = b;
     }
 
     @Override

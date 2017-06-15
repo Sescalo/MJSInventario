@@ -384,4 +384,23 @@ public class AdminBaseDatos {
         return busquedaObjetos;
     }
     
+//    // Verifica si X usuario es administrador
+    public boolean isAdmin(String nomUsuario){
+        boolean existe = false;
+        
+        try{
+            stmt = conn.createStatement();
+            resultado = stmt.executeQuery("SELECT isAdmin FROM Usuario where nombreUsuario ='" +nomUsuario+"';");
+            
+            if (resultado.next()){
+                existe = resultado.getBoolean("isAdmin");
+            }
+        }
+        
+        catch(Exception e){
+        
+        }
+        return existe;
+    }
+
 }
