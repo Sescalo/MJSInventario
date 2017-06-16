@@ -49,20 +49,20 @@
 
 			<div class="jumbotron">
                             
-				<form class="form-horizontal" action="#" th:action="@{/EditarUsuario}" th:object="${usuario}" method="post">
+				<form class="form-horizontal" action="#" th:action="@{/EditarUsuario}" th:object="${user}" method="post">
 				  <fieldset>
 
 				    <!-- <legend>Legend</legend> -->
 
 				    <div class="form-group">
-				      <label for="nombreUsuario" class="col-lg-2 control-label">Usuario</label>
+				      <label for="nombreUsuario" class="col-lg-2 control-label">Nombre Usuario</label>
 				      <div class="col-lg-10">
 				        <input class="form-control" id="nombreUsuario" placeholder="Usuario" type="text" th:field="*{nombreUsuario}"/>
 				      </div>
 				    </div>
                     
-                    <!--Para no perder el id Usuario a la hora de enviar el form-->
-                    <input type="hidden" name="idUser" th:field="*{idUsuario}" />
+            <!--Para no perder el id Usuario a la hora de enviar el form-->
+            <input type="hidden" name="idUser" th:field="*{idUsuario}" />
 
 				    <div class="form-group">
 				      <label for="nombre" class="col-lg-2 control-label">Nombre</label>
@@ -112,8 +112,9 @@
                           
 				        <button type="reset" class="btn btn-default" onclick="window.location='Usuarios'">Cancelar</button>
                         
-				        <button type="submit" name="action" value="actualizar" class="btn btn-primary">Actualizar</button>
-                                        <button type="submit"  name="action" value="eliminar" class="btn btn-danger" style="float: right;" >Eliminar</button>
+				        <!--<a th:onclick="'javascript:actualizar(__${indi}__);'" class="btn btn-primary">Actualizar</a>-->
+                <button type="submit" class="btn btn-primary" >Actualizar</button>
+                <a th:onclick="'javascript:eliminar(__${indi}__);'" class="btn btn-danger" style="float: right;" >Eliminar</a>
 				      </div>
 				    </div>
 
@@ -127,11 +128,11 @@
 	</body>
 
     <script>
-        
-        function actualizar() {
-            console.log("Func Actualizar");   
+      
+        function eliminar(value) {
+            //console.log("Func Actualizar");   
 
-            window.location="Usuarios"; //Referencia (href)
+            window.location="eliminarUsuario?ind=" +value; //Referencia (href)
         }
     </script>
 

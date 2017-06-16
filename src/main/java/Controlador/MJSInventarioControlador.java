@@ -78,6 +78,16 @@ public class MJSInventarioControlador {
         }
     }
     
+    //Actualizar usuarios con la base de datos
+    public void actualizarUsuarios(ArrayList <Usuario> arr){
+        
+        this.usuarios.removeAll(usuarios);
+        
+        for(int i=0; i< arr.size(); i++){
+            this.usuarios.add(arr.get(i));
+        }
+    }
+    
     //Actualizar historial con la base de datos
     public void actualizarHistorial(){
         
@@ -193,8 +203,6 @@ public class MJSInventarioControlador {
     
     @PostMapping("/AgregarUsuario")
     public String postAgregarUsuario(Model model, @ModelAttribute Usuario usuario) {
-        //Encriptar contrasena del usuario
-//        usuario.encriptarContra();
                 
         System.out.println(usuario.toString());
         this.usuarios.add(usuario);
@@ -210,7 +218,7 @@ public class MJSInventarioControlador {
         if(sesionAbierta){
             System.out.println("GET Usuarios");
 
-            this.usuarios = adminBD.listaUsuarios();
+            actualizarUsuarios(adminBD.listaUsuarios());
             return "Usuarios";
             
         }
@@ -234,8 +242,9 @@ public class MJSInventarioControlador {
     @GetMapping("/EditarUsuario")
     public String getEditarUsuario(Model model, @RequestParam(value = "ind") int indiceUsuario) {
         if(sesionAbierta){
-            model.addAttribute("usuario", adminBD.listaUsuarios().get(indiceUsuario));
-            System.out.println(adminBD.listaUsuarios().get(indiceUsuario).toString());
+            model.addAttribute("indi", indiceUsuario);
+            model.addAttribute("user", adminBD.listaUsuarios().get(indiceUsuario));
+//            System.out.println(adminBD.listaUsuarios().get(indiceUsuario).toString());
 
             return "EditarUsuario";
         }
@@ -244,26 +253,14 @@ public class MJSInventarioControlador {
     }
     
     @PostMapping("/EditarUsuario")
-    public String postEditarUsuario(Model model, @ModelAttribute Usuario usuario, @RequestParam(value = "action", required = true) String action) {
-        
-        System.out.println(usuario.toString());
-        //Preguntar contrasena administrador
-        adminBD.actualizarUsuario(usuario);
-        adminBD.agregarMovimiento("Edición del usuario "+usuario.getNombreUsuario());
+    public String postEditarUsuario(Model model, @ModelAttribute Usuario user/*, @RequestParam(value = "action", required = true) String action*/) {
 
-        if (action.equals("eliminar")){
-            adminBD.eliminarUsuario(usuario);
-           
-            adminBD.agregarMovimiento("Se eliminó el usuario "+usuario.getNombreUsuario());
-        }
+        System.out.println("actualizar usuario");
+        System.out.println(user.toString());
+        adminBD.actualizarUsuario(user);
+        actualizarUsuarios(adminBD.listaUsuarios());
         
-        
-        else if(action.equals("actualizar")){
-        
-        }
-        
-//        actualizar usuarios      
-//        this.usuarios = adminBD.listaUsuarios();
+        model.addAttribute("ea", user);
         return "Usuarios";
     }
     
@@ -284,9 +281,9 @@ public class MJSInventarioControlador {
       System.out.println("Post Agregar Objeto");
       
         System.out.println(objeto.toString());
-        this.objetos.add(objeto);    
+//        this.objetos.add(objeto);    
         adminBD.agregarObjeto(objeto); //agrego a base datos
-//        actualizarObjetos();
+        actualizarObjetos(adminBD.listaObjetos());
         adminBD.agregarMovimiento("Se agregó el objeto "+objeto.getNombreObjeto());
         
         return "pagPrincipal";
@@ -391,5 +388,13 @@ public class MJSInventarioControlador {
     @RequestMapping("/errorSesion")
     public String errorSesion(){
         return "ErrorSesion";
+    }
+    
+    @RequestMapping("/eliminarUsuario")
+    public String actualizarUsuario(Model model, @ModelAttribute Usuario ea, @RequestParam(value = "ind") int indice, HttpServletRequest request, HttpServletResponse response){
+        System.out.println("eliminar usuario");
+        adminBD.eliminarUsuario(usuarios.get(indice));
+        actualizarUsuarios(adminBD.listaUsuarios());
+        return "Usuarios";
     }
 }
