@@ -38,9 +38,8 @@ public class MJSInventarioControlador {
     private EscribirWord ew;
     private ArrayList<String> historial;
     private Busqueda busqueda;
-    
     private Usuario usuario;
-    
+    private boolean sesionAbierta;
     
     
 //  =========Atributos del modelo
@@ -96,7 +95,18 @@ public class MJSInventarioControlador {
         this.busqueda.setAb(AtributosObjeto.nombreObjeto);
     }
     
-//    *****************************Consructor
+    //Verificar si existe alguna sesion abierta
+    public String verificarSesion(){
+        if (sesionAbierta == false){
+            System.out.println("Error de Sesion");
+            return errorSesion();
+            
+        }
+
+        return "";
+    }
+    
+//    *****************************Constructor
     public MJSInventarioControlador() throws ClassNotFoundException, SQLException, FileNotFoundException, /*InvalidFormatException,*/ Exception{
         this.adminBD = new AdminBaseDatos();
         this.usuario = new Usuario();
@@ -105,6 +115,7 @@ public class MJSInventarioControlador {
         this.historial = adminBD.listaHistorial();
         this.busqueda = new Busqueda();
         this.ew = new EscribirWord();
+        this.sesionAbierta = false;
 //        ew.cambiarLogo();
         
         
@@ -113,7 +124,6 @@ public class MJSInventarioControlador {
 //    Inicio Sesion
     @GetMapping("/InicioSesion")
     public String getInicioSesion(Model model) {
-        usuario().setIsAdmin(true);
         return "InicioSesion";
     }
 
@@ -121,6 +131,8 @@ public class MJSInventarioControlador {
     public String postInicioSesion(Model model, @ModelAttribute Usuario usuario){
         
         if(adminBD.existeUsuario(usuario)) { //Existe el usuario
+            this.sesionAbierta = true;
+            
             if(adminBD.isAdmin(usuario.getNombreUsuario())){ //Buscar si el usuario es admin
                 usuario().setIsAdmin(true);
             }
@@ -140,18 +152,20 @@ public class MJSInventarioControlador {
         return "pagPrincipal";
     }
     
+    
 //    Pag Principal
     @GetMapping("/pagPrincipal")
     public String getPagPrincipal(Model model) {
-        
-//        actualizarHistorial();
+        if(sesionAbierta){
 
-        reiniciarBusqueda();
-        actualizarObjetos(adminBD.listaObjetos());
-        
-        System.out.println("Get paginaPrincipal");
-        
-        return "pagPrincipal";
+            reiniciarBusqueda();
+            actualizarObjetos(adminBD.listaObjetos());
+
+            System.out.println("Get paginaPrincipal");
+
+            return "pagPrincipal";
+        }
+        return "ErrorSesion";
     }
     
     //Buscar objetos
@@ -168,9 +182,13 @@ public class MJSInventarioControlador {
 //    Agregar Usuario
     @GetMapping("/AgregarUsuario")
     public String getAgregarUsuario(Model model) {
-        model.addAttribute("usuario", new Usuario());
+        if(sesionAbierta){
+            model.addAttribute("usuario", new Usuario());
 
-        return "AgregarUsuario";
+            return "AgregarUsuario";
+        }
+        
+        return "ErrorSesion";
     }
     
     @PostMapping("/AgregarUsuario")
@@ -189,32 +207,40 @@ public class MJSInventarioControlador {
 //    Lista Usuarios
     @GetMapping("/Usuarios")
     public String getUsuarios(Model model) {
-        System.out.println("GET Usuarios");
+        if(sesionAbierta){
+            System.out.println("GET Usuarios");
 
-        this.usuarios = adminBD.listaUsuarios();
-        
-        return "Usuarios";
+            this.usuarios = adminBD.listaUsuarios();
+            return "Usuarios";
+            
+        }
+        return "ErrorSesion";
     }  
     
     //    Lista Historial
     @GetMapping("/Historial")
     public String getHistorial(Model model) {
-        
-        actualizarHistorial();
-        
-        System.out.println("GET Historial");
-        return "Historial";
+        if(sesionAbierta){
+            actualizarHistorial();
+
+            System.out.println("GET Historial");
+            return "Historial";
+        }
+        return "ErrorSesion";
     }  
     
     
 //    Editar un Usuario
     @GetMapping("/EditarUsuario")
     public String getEditarUsuario(Model model, @RequestParam(value = "ind") int indiceUsuario) {
+        if(sesionAbierta){
+            model.addAttribute("usuario", adminBD.listaUsuarios().get(indiceUsuario));
+            System.out.println(adminBD.listaUsuarios().get(indiceUsuario).toString());
+
+            return "EditarUsuario";
+        }
         
-        model.addAttribute("usuario", adminBD.listaUsuarios().get(indiceUsuario));
-        System.out.println(adminBD.listaUsuarios().get(indiceUsuario).toString());
-        
-        return "EditarUsuario";
+        return "ErrorSesion";
     }
     
     @PostMapping("/EditarUsuario")
@@ -244,10 +270,13 @@ public class MJSInventarioControlador {
     //    Agregar un Objeto
     @GetMapping("/AgregarObjeto")
     public String getAgregarObjeto(Model model) {
-        System.out.println("Get AgregarObjeto");
-        model. addAttribute("objeto", new Objeto());
-        
-        return "AgregarObjeto";
+        if(sesionAbierta){
+            System.out.println("Get AgregarObjeto");
+            model. addAttribute("objeto", new Objeto());
+
+            return "AgregarObjeto";
+        }
+        return "ErrorSesion";
     }
     
     @PostMapping("/AgregarObjeto")
@@ -266,13 +295,15 @@ public class MJSInventarioControlador {
     //    Editar un objeto
     @GetMapping("/VerObjeto")
     public String getVerObjeto(Model model, @RequestParam(value = "ind") int indiceObjeto) {
-        
-        model.addAttribute("objeto", adminBD.listaObjetos().get(indiceObjeto));
-        model.addAttribute("indice", indiceObjeto); // Para efectos de descarga y editar
-        
-//        System.out.println(adminBD.listaObjetos().get(indiceObjeto).toString());
-        
-        return "VerObjeto";
+        if(sesionAbierta){
+            model.addAttribute("objeto", adminBD.listaObjetos().get(indiceObjeto));
+            model.addAttribute("indice", indiceObjeto); // Para efectos de descarga y editar
+
+    //        System.out.println(adminBD.listaObjetos().get(indiceObjeto).toString());
+
+            return "VerObjeto";
+        }
+        return "ErrorSesion";
     }
     
     @PostMapping("/VerObjeto")
@@ -301,10 +332,12 @@ public class MJSInventarioControlador {
     //    Editar un objeto
     @GetMapping("/EditarObjeto")
     public String getEditarObjeto(Model model, @RequestParam(value = "ind") int indiceObjeto) {
-        
-        model.addAttribute("objeto", adminBD.listaObjetos().get(indiceObjeto));
-        
-        return "EditarObjeto";
+        if(sesionAbierta){
+            model.addAttribute("objeto", adminBD.listaObjetos().get(indiceObjeto));
+            
+            return "EditarObjeto";
+        }
+        return "ErrorSesion";
     }
     
     @PostMapping("/EditarObjeto")
@@ -349,4 +382,14 @@ public class MJSInventarioControlador {
         }
     }
     
+    @RequestMapping("/salir")
+    public String salir( Model model ){
+        this.sesionAbierta = false;
+        return "InicioSesion";
+    }
+    
+    @RequestMapping("/errorSesion")
+    public String errorSesion(){
+        return "ErrorSesion";
+    }
 }
