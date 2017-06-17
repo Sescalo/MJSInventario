@@ -19,22 +19,20 @@ import org.apache.poi.hwpf.usermodel.Section;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 
 
-import java.io.OutputStream;
-import com.lowagie.text.Document;
-import com.lowagie.text.DocumentException;
-//import com.lowagie.text.Paragraph;
-import com.lowagie.text.pdf.PdfWriter;
-import org.apache.poi.hwpf.extractor.WordExtractor;
+
+//import com.lowagie.text.Document;
 import org.apache.poi.hwpf.usermodel.Paragraph;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+
+import com.aspose.words.Document;
+import java.util.List;
+import static org.apache.poi.ss.formula.functions.NumericFunction.LOG;
 import org.apache.poi.util.Units;
-import org.apache.poi.xwpf.model.XWPFHeaderFooterPolicy;
+import org.apache.poi.xwpf.usermodel.IBodyElement;
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
-import org.apache.poi.xwpf.usermodel.XWPFHeader;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
-
 
 
 /**
@@ -44,7 +42,7 @@ import org.apache.poi.xwpf.usermodel.XWPFRun;
 public class EscribirWord {
     
     public void crearWord(Objeto obj) throws IOException{
-        String filePath = "HojaInventarioTemplate.doc";
+        String filePath = "HojaInventarioTemplate.docx";
         String filePathFinal = "HojaInventarioObjeto.doc";
         POIFSFileSystem fs = null;
         
@@ -133,39 +131,80 @@ public class EscribirWord {
         }
     }
     
-    public void cambiarLogo() throws FileNotFoundException, IOException, InvalidFormatException{
-        //Colocar imagen
-//        XWPFDocument doc = new XWPFDocument();
-////        XWPFDocument doc = new XWPFDocument(new FileInputStream("HojaInventarioObjeto.doc"));
-////
-//        XWPFParagraph title = doc.createParagraph();    
-//        XWPFRun run = title.createRun();
-//        run.setText("Fig.1 A Natural Scene");
-//        run.setBold(true);
-//        title.setAlignment(ParagraphAlignment.CENTER);
-//
-//        String imgFile = "PlayStation_1_Logo.png";
-//        FileInputStream is = new FileInputStream(imgFile);
-//        run.addBreak();
-//        run.addPicture(is, XWPFDocument.PICTURE_TYPE_JPEG, imgFile, Units.toEMU(200), Units.toEMU(200)); // 200x200 pixels
-//        is.close();
-//
-//        FileOutputStream fos = new FileOutputStream("test4.doc");
-//        doc.write(fos);
-//        fos.close();
-
-        //Header
-//        
-//        XWPFDocument docu = new XWPFDocument(new FileInputStream("test4.doc"));
-//        
-//        XWPFHeaderFooterPolicy headerFooterPolicy = docu.getHeaderFooterPolicy();
-//        XWPFHeader defaultHeader = headerFooterPolicy.getDefaultHeader();
-//        
-//        defaultHeader.getParagraphs().get(0).getRuns().get(0).setText("New Text", 0);
-//        // this is only to put some space between the content in the header and the real content
-//        defaultHeader.getParagraphs().get(defaultHeader.getParagraphs().size() - 1).setSpacingAfter(300);
+    
+    //Configuracion
+    public void cambiarLogo() throws FileNotFoundException, IOException, InvalidFormatException, Exception{
+    
+        //ASPOSE
+//    Document doc = new Document("HojaInventarioObjeto.doc");
+////    doc.save("Out.pdf");
+    
+//        HWPFDocument doc = new HWPFDocument(new FileInputStream("HojaInventarioTemplate.doc"));
 
     
+    
+        
+        XWPFDocument document = new XWPFDocument(new FileInputStream("HojaInventarioTemplate.docx"));
+        String imageOldName = "logo";
+        try {
+//            LOG.info("replaceImage: old=" + "logo" + ", new=" + "imagePathNew");
+            String imagePathNew = "PlayStation_1_Logo.png";
+            
+            int newImageWidth = 1;
+            int newImageHeight = 2;
+                    
+            int imageParagraphPos = -1;
+            XWPFParagraph imageParagraph = null;
+
+            List<IBodyElement> documentElements = document.getBodyElements();
+            for(IBodyElement documentElement : documentElements){
+                imageParagraphPos ++;
+                if(documentElement instanceof XWPFParagraph){
+                    imageParagraph = (XWPFParagraph) documentElement;
+                    if(imageParagraph != null && imageParagraph.getCTP() != null && imageParagraph.getCTP().toString().trim().indexOf(imageOldName) != -1) {
+                        break;
+                    }
+                }
+            }
+
+            if (imageParagraph == null) {
+                throw new Exception("Unable to replace image data due to the exception:\n"
+                        + "'" + imageOldName + "' not found in in document.");
+            }
+            ParagraphAlignment oldImageAlignment = imageParagraph.getAlignment();
+
+            // remove old image
+            document.removeBodyElement(imageParagraphPos-1);
+
+            // now add new image
+
+            // BELOW LINE WILL CREATE AN IMAGE
+            // PARAGRAPH AT THE END OF THE DOCUMENT.
+            // REMOVE THIS IMAGE PARAGRAPH AFTER 
+            // SETTING THE NEW IMAGE AT THE OLD IMAGE POSITION
+            XWPFParagraph newImageParagraph = document.createParagraph();    
+            XWPFRun newImageRun = newImageParagraph.createRun();
+            //newImageRun.setText(newImageText);
+            newImageParagraph.setAlignment(oldImageAlignment);
+            
+            try (FileInputStream is = new FileInputStream(imagePathNew)) {
+                newImageRun.addPicture(is, XWPFDocument.PICTURE_TYPE_JPEG, imagePathNew,
+                             Units.toEMU(newImageWidth), Units.toEMU(newImageHeight)); 
+            } 
+
+            // set new image at the old image position
+            document.setParagraph(newImageParagraph, imageParagraphPos);
+
+            // NOW REMOVE REDUNDANT IMAGE FORM THE END OF DOCUMENT
+            document.removeBodyElement(document.getBodyElements().size() - 1);
+
+//            return document;
+        } catch (Exception e) {
+            throw new Exception("Unable to replace image '" + imageOldName + "' due to the exception:\n" + e);
+        } finally {                                                 
+        // cleanup code
+    }
+        
     }
     
     

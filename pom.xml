@@ -79,9 +79,10 @@
         
         <dependency>
             <groupId>com.aspose</groupId>
-            <artifactId>aspose-cells</artifactId>
-            <version>9.0.0</version>
-        </dependency>
+            <artifactId>aspose-words</artifactId>
+            <version>16.7.0</version>
+            <classifier>jdk16</classifier>
+         </dependency>
         
         
         <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->

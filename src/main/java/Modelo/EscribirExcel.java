@@ -5,38 +5,6 @@
  */
 package Modelo;
 
-import com.aspose.cells.SaveFormat;
-import com.aspose.cells.Workbook;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Phrase;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
-import com.sun.star.beans.PropertyValue;
-import com.sun.star.comp.helper.Bootstrap;
-import com.sun.star.frame.XComponentLoader;
-import com.sun.star.frame.XDesktop;
-import com.sun.star.frame.XStorable;
-import com.sun.star.lang.XComponent;
-import com.sun.star.lang.XMultiComponentFactory;
-import com.sun.star.uno.UnoRuntime;
-import com.sun.star.uno.XComponentContext;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.util.Iterator;
-
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-//import org.apache.poi.xssf.usermodel.XSSFSheet;
-//import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
-
-
 
 /**
  *
@@ -322,7 +290,7 @@ public class EscribirExcel {
 //
 //        xDesktop.terminate();
     }
-
+    
 
 
 }

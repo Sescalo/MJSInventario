@@ -126,7 +126,7 @@ public class MJSInventarioControlador {
         this.busqueda = new Busqueda();
         this.ew = new EscribirWord();
         this.sesionAbierta = false;
-//        ew.cambiarLogo();
+        ew.cambiarLogo();
         
         
     }

@@ -94,6 +94,7 @@ public class Usuario {
 //        System.out.println("Seteando contrasena");
         
         this.contrasena = encriptarContra(contrasena);
+//        this.contrasena = contrasena;
     }
 
     public int getIdUsuario() {
