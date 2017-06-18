@@ -40,6 +40,7 @@ public class MJSInventarioControlador {
     private Busqueda busqueda;
     private Usuario usuario;
     private boolean sesionAbierta;
+    private java.util.Date fechaActual;
     
     
 //  =========Atributos del modelo
@@ -126,6 +127,7 @@ public class MJSInventarioControlador {
         this.busqueda = new Busqueda();
         this.ew = new EscribirWord();
         this.sesionAbierta = false;
+        this.fechaActual = new java.util.Date();
 //        ew.cambiarLogo();
         
         
@@ -158,7 +160,7 @@ public class MJSInventarioControlador {
         }
 
         
-        adminBD.agregarMovimiento("Inicio de Sesión para "+usuario.getNombreUsuario());
+        adminBD.agregarMovimiento("Ingreso al sistema: "+usuario.getNombreUsuario() + " - " + fechaActual.toString().substring(4, fechaActual.toString().length()-9));
         return "pagPrincipal";
     }
     
@@ -207,7 +209,7 @@ public class MJSInventarioControlador {
         System.out.println(usuario.toString());
         this.usuarios.add(usuario);
         adminBD.agregarUsuario(usuario);  //agrego a Base Datos
-        adminBD.agregarMovimiento("Se agregó el usuario "+usuario.getNombreUsuario());
+        adminBD.agregarMovimiento("Nuevo usuario: "+usuario.getNombreUsuario()+" - "+fechaActual.toString().substring(4, fechaActual.toString().length()-9));
         
         return "Usuarios";
     }
@@ -284,7 +286,7 @@ public class MJSInventarioControlador {
 //        this.objetos.add(objeto);    
         adminBD.agregarObjeto(objeto); //agrego a base datos
         actualizarObjetos(adminBD.listaObjetos());
-        adminBD.agregarMovimiento("Se agregó el objeto "+objeto.getNombreObjeto());
+        adminBD.agregarMovimiento("Objeto agregado: "+objeto.getNombreObjeto()+" - "+fechaActual.toString().substring(4, fechaActual.toString().length()-9));
         
         return "pagPrincipal";
     }
@@ -311,7 +313,7 @@ public class MJSInventarioControlador {
 
         if (action.equals("eliminar")){
             adminBD.eliminarObjeto(objeto);
-            adminBD.agregarMovimiento("Se eliminó el objeto "+objeto.getNombreObjeto());
+            adminBD.agregarMovimiento("Objeto eliminado: "+objeto.getNombreObjeto()+" - "+fechaActual.toString().substring(4, fechaActual.toString().length()-9));
             actualizarObjetos(adminBD.listaObjetos());
         }
         
@@ -342,7 +344,7 @@ public class MJSInventarioControlador {
         
         //Preguntar contrasena administrador
         adminBD.actualizarObjeto(objeto);
-        adminBD.agregarMovimiento("Edición del objeto "+objeto.getNombreObjeto());
+        adminBD.agregarMovimiento("Objeto editado: "+objeto.getNombreObjeto()+" - "+fechaActual.toString().substring(4, fechaActual.toString().length()-9));
         
 //        actualizar objetos
         actualizarObjetos(adminBD.listaObjetos());
@@ -371,7 +373,7 @@ public class MJSInventarioControlador {
             {
                 Files.copy(file, response.getOutputStream());
                 response.getOutputStream().flush();
-                adminBD.agregarMovimiento("Se descargó el objeto "+objetos.get(indiceObjeto).getNombreObjeto());
+                adminBD.agregarMovimiento("Objeto descargado: "+objetos.get(indiceObjeto).getNombreObjeto()+" - "+fechaActual.toString().substring(4, fechaActual.toString().length()-9));
             } 
             catch (IOException ex) {
                 ex.printStackTrace();

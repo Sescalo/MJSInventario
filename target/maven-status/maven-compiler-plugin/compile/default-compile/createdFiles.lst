@@ -1,10 +1,11 @@
 Modelo/Busqueda.class
 Controlador/MJSInventarioControlador.class
 Modelo/Objeto.class
-Modelo/Usuario.class
 Modelo/DatosUsuario.class
+Modelo/Usuario.class
 BaseDatos/AdminBaseDatos.class
 Controlador/Application.class
 Modelo/EscribirExcel.class
 Modelo/EscribirWord.class
 Modelo/AtributosObjeto.class
+.netbeans_automatic_build
