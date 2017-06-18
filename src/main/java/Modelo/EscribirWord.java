@@ -42,7 +42,7 @@ import org.apache.poi.xwpf.usermodel.XWPFRun;
 public class EscribirWord {
     
     public void crearWord(Objeto obj) throws IOException{
-        String filePath = "HojaInventarioTemplate.docx";
+        String filePath = "HojaInventarioTemplate.doc";
         String filePathFinal = "HojaInventarioObjeto.doc";
         POIFSFileSystem fs = null;
         
