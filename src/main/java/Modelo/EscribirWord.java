@@ -58,6 +58,8 @@ public class EscribirWord {
             doc = replaceText(doc, "$nombreFuente", obj.getNombreFuente());
             doc = replaceText(doc, "$fechaInventario", obj.getFechaInventario());
             
+            doc = replaceText(doc, "$numCatalogo", obj.getNumCatalogo());
+            
             doc = replaceText(doc, "$numInventario", obj.getNumInventario());
             doc = replaceText(doc, "$otrosNumeros", obj.getOtrosNumeros());
             doc = replaceText(doc, "$direccionFuente", obj.getDireccionFuente());
