@@ -326,6 +326,96 @@ public class Objeto {
     public void setAprobo(String aprobo) {
         this.aprobo = aprobo;
     }   
+    
+    public void revisarVacios(){
+        if(this.nombreObjeto.equals("")){
+            this.nombreObjeto = "No aplica";
+        }
+        if(this.formaAdquisicion.equals("")){
+            this.formaAdquisicion = "No aplica";
+        }
+        if(this.fechaIngreso.equals("")){
+            this.fechaIngreso = "No aplica";
+        }
+        if(this.numRegistro.equals("")){
+            this.numRegistro = "No aplica";
+        }
+        if(this.valorEconomico.equals("")){
+            this.valorEconomico = "No aplica";
+        }
+        if(this.nombreFuente.equals("")){
+            this.nombreFuente = "No aplica";
+        }
+        if(this.fechaInventario.equals("")){
+            this.fechaInventario = "No aplica";
+        }
+        if(this.numInventario.equals("")){
+            this.numInventario = "No aplica";
+        }
+        if(this.direccionFuente.equals("")){
+            this.direccionFuente = "No aplica";
+        }
+        if(this.fechaCatalogo.equals("")){
+            this.fechaCatalogo = "No aplica";
+        }
+        if(this.numCatalogo.equals("")){
+            this.numCatalogo = "No aplica";
+        }
+        if(this.espesor.equals("")){
+            this.espesor = "No aplica";
+        }
+        if(this.alto.equals("")){
+            this.alto = "No aplica";
+        }
+        if(this.ancho.equals("")){
+            this.ancho = "No aplica";
+        }
+        if(this.largo.equals("")){
+            this.largo = "No aplica";
+        }
+        if(this.diametro.equals("")){
+            this.diametro = "No aplica";
+        }
+        if(this.peso.equals("")){
+            this.peso = "No aplica";
+        }
+        if(this.procedencia.equals("")){
+            this.procedencia = "No aplica";
+        }
+        if(this.materiaYTecnica.equals("")){
+            this.materiaYTecnica = "No aplica";
+        }
+        if(this.numeroNegativo.equals("")){
+            this.numeroNegativo = "No aplica";
+        }
+        if(this.autor.equals("")){
+            this.autor = "No aplica";
+        }
+        if(this.epoca.equals("")){
+            this.epoca = "No aplica";
+        }
+        if(this.descripcion.equals("")){
+            this.descripcion = "No aplica";
+        }
+        if(this.documentacion.equals("")){
+            this.documentacion = "No aplica";
+        }
+        if(this.observaciones.equals("")){
+            this.observaciones = "No aplica";
+        }
+        if(this.recibio.equals("")){
+            this.recibio = "No aplica";
+        }
+        if(this.inventario.equals("")){
+            this.inventario = "No aplica";
+        }
+        if(this.catalogo.equals("")){
+            this.catalogo = "No aplica";
+        }
+        if(this.aprobo.equals("")){
+            this.aprobo = "No aplica";
+        }
+    }
 
     @Override
     public String toString() {

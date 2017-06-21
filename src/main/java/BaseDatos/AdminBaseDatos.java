@@ -3,6 +3,7 @@ package BaseDatos;
 import Modelo.Busqueda;
 import Modelo.Objeto;
 import Modelo.Usuario;
+import java.lang.reflect.Field;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -149,7 +150,8 @@ public class AdminBaseDatos {
     }
     
     //    Agregar un objeto a la base de datos
-    public void agregarObjeto(Objeto objeto){
+    public void agregarObjeto(Objeto objeto) {
+        objeto.revisarVacios();
         try{
             prepStmt = conn.prepareStatement("insert into Objeto (nombreObjeto, formaAdquisicion, fechaIngreso, numRegistro, "
                     + "valorEconomico, nombreFuente, fechaInventario, numInventario, otrosNumeros, direccionFuente, "
