@@ -31,8 +31,11 @@
                         
 
 		      <ul class="nav navbar-nav navbar-right">
-                          <li><p class="navbar-text">Usuario:  <span th:text="${usuario.getNombreUsuario()}"></span></p></li>
-                          <!--<p class="navbar-text" th:text="${usuario.getNombreUsuario()}">Usuario conectado...</p> -->
+                          <li><p class="navbar-text">
+                              <span class="glyphicon glyphicon-user"></span>
+                              <span th:text="${usuario.getNombreUsuario()}"></span>
+                            </p>
+                          </li>
 		        <li><a href="salir">Salir</a></li>
 		      </ul>
 

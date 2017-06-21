@@ -30,7 +30,11 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><p class="navbar-text">Usuario:  <span th:text="${usuario.getNombreUsuario()}"></span></p></li>
+                <li><p class="navbar-text">
+                              <span class="glyphicon glyphicon-user"></span>
+                              <span th:text="${usuario.getNombreUsuario()}"></span>
+                            </p>
+                          </li>
               <li><a href="salir">Salir</a></li>
             </ul>
 
@@ -254,7 +258,7 @@
                 <button type="reset" class="btn btn-default" onclick="window.location='pagPrincipal'">Cancelar</button>
                 
                   <a th:if="${usuario.isAdmin ==  true}" th:onclick="'javascript:editar(__${indice}__);'" class="btn btn-primary">Editar</a>
-                  <button th:if="${usuario.isAdmin ==  true}" type="submit"  name="action" value="eliminar" class="btn btn-danger" style="float: right;">Eliminar</button>
+                  <button th:if="${usuario.isAdmin ==  true}" type="submit"  name="action" value="eliminar" onclick="eliminar()" class="btn btn-danger" style="float: right;">Eliminar</button>
 						</div>
 					</div>
 
@@ -271,6 +275,12 @@
       function editar(value) {
           console.log(value);
           window.location="EditarObjeto?ind=" + value; //Referencia (href)
+      }
+      function eliminar() {
+          var result = confirm("¿Está seguro de borrar el objeto? No podrá recuperarlo");
+          if (!result) {
+              document.getElementsByName("action")[0].value = "noEliminar";
+          }
       }
   </script>
 </html>

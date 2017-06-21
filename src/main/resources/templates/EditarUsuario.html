@@ -34,7 +34,11 @@
 		      </ul>
 
 		      <ul class="nav navbar-nav navbar-right">
-                          <li><p class="navbar-text">Usuario:  <span th:text="${usuario.getNombreUsuario()}"></span></p></li>
+                          <li><p class="navbar-text">
+                              <span class="glyphicon glyphicon-user"></span>
+                              <span th:text="${usuario.getNombreUsuario()}"></span>
+                            </p>
+                          </li>
 		        <li><a href="salir">Salir</a></li>
 		      </ul>
 
@@ -132,8 +136,13 @@
       
         function eliminar(value) {
             //console.log("Func Actualizar");   
-
-            window.location="eliminarUsuario?ind=" +value; //Referencia (href)
+            var result = confirm("¿Está seguro de borrar el usuario? No podrá recuperarlo");
+            if(result){
+                window.location="eliminarUsuario?ind=" +value; //Referencia (href)
+            }
+            else{
+                window.location="EditarUsuario?ind=" +value;
+            }
         }
     </script>
 
